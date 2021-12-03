@@ -1,0 +1,17 @@
+body {
+  h1 {
+    color: rgb(128, 0, 100)
+  } // body h1 {}
+
+  h1 {
+
+    p {
+    color: rgb(235, 8, 8)
+    } // body h1 p {}
+  } // body h1 {}
+
+  p {
+    color: rgb(252, 2, 85)
+  } // body p {}
+}
+// this is the same as: body h1 {}

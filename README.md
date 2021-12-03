@@ -3,15 +3,10 @@
 What happens when you happen to get on the bad side of the Space Mafia? Well….you either try to survive or be eliminated! Space Sweeper is a space themed game where you are flying in space fighting your way through against enemies sent to eliminate you.
 # Functionality & MVPs
 In Space Sweeper, users will be able to:
-- fly a spaceship through space
-- move using the wasd keys
+- fly a spaceship through space using using the wasd keys
 - shoot enemies using the space key
 - play through different levels
-- upgrade their ship
-- collect items that will add extra modification to their ship
-- lose if number of lives reaches 0
-- advance to the next level when they have killed a certain amount of enemies.
-- win when they defeat the final boss
+- collect items that will add extra modification to their ship and upgrade ship
 - be able to start/pause game
 In addition, this project will include:
 - An About modal describing the background and rules of the game
