@@ -8,6 +8,7 @@ In Space Sweeper, users will be able to:
 - play through different levels
 - collect items that will add extra modification to their ship and upgrade ship
 - be able to start/pause game
+
 In addition, this project will include:
 - An About modal describing the background and rules of the game
 - A production README
