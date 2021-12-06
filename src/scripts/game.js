@@ -3,6 +3,7 @@ import Enemy from "./enemy"
 import EnemyBullet from "./enemy_bullet"
 import Level from "./level"
 import Ship  from "./ship"
+import Backgroud from "./background"
 // import Level from "./level"
 class Game {
     constructor(ctx) {
@@ -24,7 +25,7 @@ class Game {
     this.background = new Image()
     this.x = 0
     this.x2 = 1080 // Used for repeating background
-    this.gameSpeed = 5;
+    this.gameSpeed = 10;
 
     // this.addShip();
     // console.log(this.enemies)
@@ -90,11 +91,14 @@ class Game {
     }
     
     handleBackground(ctx){
-        let background = new Image();
-        background.src = this.level.background_src
-        
-        // console.log(background)
-        // console.log(this.background)
+    let background = new Image();
+    background.src = this.level.background_src
+    // const backgroundMove = new Backgroud(background, this, 0.5, ctx)
+    
+    // backgroundMove.update()
+    // backgroundMove.draw();
+        // // console.log(background)
+        // // console.log(this.background)
         ctx.drawImage(background, this.x, 0, Game.WIDTH, Game.HEIGHT)
         ctx.drawImage(background, this.x2, 0, Game.WIDTH, Game.HEIGHT)
 
@@ -108,6 +112,8 @@ class Game {
         } else {
             this.x2 -= this.gameSpeed
         }
+
+
         // console.log(this.x)
         // this.x--;
         // let background2 = new Image()
@@ -238,7 +244,8 @@ class Game {
         // console.log(this.bullets)
         // console.log(this.enemies)
         // console.log(this.currentEnemies)
-        if(this.score > 10){
+        if(this.score === 10){
+            this.currentEnemies = []
             this.level = Level.level2
         }
         this.moveObjects(delta);

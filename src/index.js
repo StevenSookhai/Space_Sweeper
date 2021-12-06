@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = 1200;
     const ctx = canvas.getContext("2d");
     const game = new Game(ctx);
-    // new GameView(game, ctx).start()   
+    new GameView(game, ctx).start()   
     // const testObject = new MovingObject({ pos: [canvas.width / 2, canvas.height / 2], radius: 5, color: "red", vel:[3,3]});
     // const testObject2 = new MovingObject({ pos: [canvas.width / 2 + 100, canvas.height / 2], radius: 5, color: "blue", vel: [3, 3] });
     // const testEnemy = new Enemy({game: game});
