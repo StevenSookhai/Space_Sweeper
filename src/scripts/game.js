@@ -211,11 +211,11 @@ class Game {
                 const obj2 = allObjects[j];
 
                 if (obj1.isCollided(obj2)) {
-                    if ((obj1 instanceof Bullet && obj2 instanceof Enemy) || (obj1 instanceof Enemy && obj2 instanceof Bullet)){
-                        let shotImage = new Image();
-                        shotImage.src = "./src/images/hit.png"
-                        this.ctx.drawImage(shotImage, obj1.pos[0] - 30, obj1.pos[1] - 30, 100, 100)
-                    }
+                    // if ((obj1 instanceof Bullet && obj2 instanceof Enemy) || (obj1 instanceof Enemy && obj2 instanceof Bullet)){
+                    //     let shotImage = new Image();
+                    //     shotImage.src = "./src/images/hit.png"
+                    //     this.ctx.drawImage(shotImage, obj1.pos[0] - 30, obj1.pos[1] - 30, 100, 100)
+                    // }
                     const collision = obj1.collideWith(obj2);
                     if (collision) return;
                     // return
@@ -292,12 +292,20 @@ class Game {
             // this.score -=1
         }
 
-        if(this.currency === 50){
-            this.ship.type = 2
-            this.ship.addSprites();
+        if (this.score === 20) {
+            this.enemies = []
+            this.score += 1
+            this.level = Level.level1
+            // this.score -=1
         }
 
-        
+        if(this.currency === 20){
+            this.ships[0].type = 2
+            // this.ships[0].i = 2
+            this.ships[0].addSprites();
+        }
+
+
         this.moveObjects(delta);
         this.checkCollisions()
     }

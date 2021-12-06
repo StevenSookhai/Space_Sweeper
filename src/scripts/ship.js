@@ -14,10 +14,11 @@ class Ship extends MovingObject {
         super(options)
         this.spriteImage = new Image()
         this.spriteImagesArray = []
+        this.type = 2
         this.addSprites();
         // console.log(this.spriteImagesArray)
+        console.log(this.spriteImagesArray)
         this.i = 0
-        this.type = 1
         // this.handleShipImage()
     }
 
@@ -42,7 +43,8 @@ class Ship extends MovingObject {
             this.i++
         }
     }else if(this.type === 2){
-        this.i = 9
+        // this.i =0
+        // this.i = 9
         if (this.i !== 9) {
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70, this.pos[1] - 55, 130, 120)
             this.i++
@@ -117,10 +119,12 @@ class Ship extends MovingObject {
         this.spriteImagesArray.push(spriteImage5)
         this.spriteImagesArray.push(spriteImage6)
         this.spriteImagesArray.push(spriteImage7)
+        console.log("here")
+        
        }
        
        else if(this.type === 2){
-            this.spriteImagesArray = []
+           this.spriteImagesArray = []
            let spriteImage1 = new Image()
            let spriteImage2 = new Image()
            let spriteImage3 = new Image()
@@ -153,6 +157,7 @@ class Ship extends MovingObject {
            this.spriteImagesArray.push(spriteImage8)
            this.spriteImagesArray.push(spriteImage9)
            this.spriteImagesArray.push(spriteImage10)
+           console.log(this.spriteImagesArray)
        }
  
 
