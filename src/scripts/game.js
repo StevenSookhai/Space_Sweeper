@@ -69,7 +69,7 @@ class Game {
         // console.log("In game addShip")
         const ship = new Ship({game: this})
         // console.log(ship)
-        ship.handleShipImage(this.ctx)
+        ship.draw(this.ctx)//REMEMBER TO COMMENT THIS BACK IN
         // console.log(ship)
         this.ships.push(ship)
         // console.log(this.ships)
@@ -145,7 +145,7 @@ class Game {
 
         this.ships.forEach(ship => {
             // ship.draw(ctx)
-            ship.handleShipImage(ctx)
+            ship.drawShip(ctx)
         })
         this.bullets.forEach(bullet => {
             bullet.drawBullet(ctx)
