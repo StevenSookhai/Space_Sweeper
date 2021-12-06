@@ -20,7 +20,7 @@ class Game {
     console.log(this.level)
     this.score = 0
     // this.addEnemies();
-    this.spawnEnemies();
+    this.enemiesTimer = this.spawnEnemies();
     this.spawnItems();
     // this.enemyShoots();
     this.maxEnemy = 2 
@@ -28,6 +28,7 @@ class Game {
     this.x = 0
     this.x2 = 1080 // Used for repeating background
     this.gameSpeed = 10;
+    this.currency = 0
 
     // this.addShip();
     // console.log(this.enemies)
@@ -50,18 +51,19 @@ class Game {
     // }
 
     spawnEnemies(){
-        setInterval(() => {
+        const timerID = setInterval(() => {
             const enemy = new Enemy({ game: this})
             this.enemies.push(enemy)
         }, 1000);
     //    this.enemyShoots();
+        return timerID
     }
 
     spawnItems() {
         setInterval(() => {
             const item = new Item({ game: this })
             this.items.push(item)
-        }, 2000);
+        }, 6000);
         //    this.enemyShoots();
     }
 
@@ -160,6 +162,13 @@ class Game {
         // let count = 0
         // setInterval(this.enemies[count], 1000)
 
+        this.items.forEach(item => {
+            // item.pos = this.itemRandomPos();
+            // console.log(item.pos)
+            // console.log(item)
+            // item.draw(ctx)
+            item.drawItem(ctx)
+        })
         this.ships.forEach(ship => {
             // ship.draw(ctx)
             ship.drawShip(ctx)
@@ -172,12 +181,6 @@ class Game {
             bullet.drawBullet(ctx)
         })
 
-        this.items.forEach(item => {
-            // item.pos = this.itemRandomPos();
-            // console.log(item.pos)
-            console.log(item)
-            item.draw(ctx)
-        })
         
         
     }
@@ -198,7 +201,7 @@ class Game {
         })
     }
     getAllObjects(){ // grab all current objects 
-        return [].concat(this.enemies, this.ships, this.bullets)
+        return [].concat(this.enemies, this.ships, this.bullets, this.items)
     }
     checkCollisions(){
        const allObjects = this.getAllObjects();
@@ -215,6 +218,7 @@ class Game {
                     }
                     const collision = obj1.collideWith(obj2);
                     if (collision) return;
+                    // return
                 }
             }
         }
@@ -248,6 +252,11 @@ class Game {
             // console.log(this.bullets)
             this.enemyBullets.splice(this.enemyBullets.indexOf(object), 1)
         }
+        else if (object instanceof Item) {
+            // console.log("removing Enemy bullet")
+            // console.log(this.bullets)
+            this.items.splice(this.items.indexOf(object), 1)
+        }
 
     }
     // enemyCreator(){
@@ -273,12 +282,22 @@ class Game {
         // console.log(this.bullets)
         // console.log(this.enemies)
         // console.log(this.currentEnemies)
+        // if(this.score === 3){
+        //     clearInterval(this.enemiesTimer)
+        // }
         if(this.score === 10){
             this.enemies = []
             this.score +=1
             this.level = Level.level2
             // this.score -=1
         }
+
+        if(this.currency === 50){
+            this.ship.type = 2
+            this.ship.addSprites();
+        }
+
+        
         this.moveObjects(delta);
         this.checkCollisions()
     }

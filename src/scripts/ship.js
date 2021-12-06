@@ -2,6 +2,7 @@ import Enemy from "./enemy";
 import MovingObject from "./moving_object";
 import Bullet from "./bullet";
 import Util from "./util";
+import Item from "./item";
 
 class Ship extends MovingObject {
     constructor(options){
@@ -16,17 +17,22 @@ class Ship extends MovingObject {
         this.addSprites();
         // console.log(this.spriteImagesArray)
         this.i = 0
+        this.type = 1
         // this.handleShipImage()
     }
 
     collideWith(otherObject){
-    //     if(otherObject instanceof Enemy){
-    //         otherObject.remove()
-    //         return true
-    //     }
-    // return false    
+        if(otherObject instanceof Item){
+            this.game.currency += 10
+            console.log(this.game.currency)
+            otherObject.remove()
+            return true
+        }
+    return false    
     }
+    
     drawShip(ctx){
+    if (this.type === 1){
         if(this.i !== 6){
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70,  this.pos[1] - 55, 130, 120)
             this.i++
@@ -35,6 +41,17 @@ class Ship extends MovingObject {
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0]- 70, this.pos[1] - 55, 130, 120)
             this.i++
         }
+    }else if(this.type === 2){
+        this.i = 9
+        if (this.i !== 9) {
+            ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70, this.pos[1] - 55, 130, 120)
+            this.i++
+        } else {
+            this.i = 0
+            ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70, this.pos[1] - 55, 130, 120)
+            this.i++
+        }
+    }
     
     }
     // handleShipImage(ctx){
@@ -76,6 +93,7 @@ class Ship extends MovingObject {
         
     }
     addSprites(){
+       if(this.type === 1){
         let spriteImage1 = new Image()
         let spriteImage2 = new Image()
         let spriteImage3 = new Image()
@@ -99,7 +117,43 @@ class Ship extends MovingObject {
         this.spriteImagesArray.push(spriteImage5)
         this.spriteImagesArray.push(spriteImage6)
         this.spriteImagesArray.push(spriteImage7)
+       }
+       
+       else if(this.type === 2){
+            this.spriteImagesArray = []
+           let spriteImage1 = new Image()
+           let spriteImage2 = new Image()
+           let spriteImage3 = new Image()
+           let spriteImage4 = new Image()
+           let spriteImage5 = new Image()
+           let spriteImage6 = new Image()
+           let spriteImage7 = new Image()
+           let spriteImage8 = new Image()
+           let spriteImage9 = new Image()
+           let spriteImage10 = new Image()
 
+           spriteImage1.src = "./src/images/ship/ship2/ship_2_0.png"
+           spriteImage2.src = "./src/images/ship/ship2/ship_2_1.png"
+           spriteImage3.src = "./src/images/ship/ship2/ship_2_2.png"
+           spriteImage4.src = "./src/images/ship/ship2/ship_2_3.png"
+           spriteImage5.src = "./src/images/ship/ship2/ship_2_4.png"
+           spriteImage6.src = "./src/images/ship/ship2/ship_2_5.png"
+           spriteImage7.src = "./src/images/ship/ship2/ship_2_6.png"
+           spriteImage8.src = "./src/images/ship/ship2/ship_2_7.png"
+           spriteImage9.src = "./src/images/ship/ship2/ship_2_8.png"
+           spriteImage10.src = "./src/images/ship/ship2/ship_2_9.png"
+
+           this.spriteImagesArray.push(spriteImage1)
+           this.spriteImagesArray.push(spriteImage2)
+           this.spriteImagesArray.push(spriteImage3)
+           this.spriteImagesArray.push(spriteImage4)
+           this.spriteImagesArray.push(spriteImage5)
+           this.spriteImagesArray.push(spriteImage6)
+           this.spriteImagesArray.push(spriteImage7)
+           this.spriteImagesArray.push(spriteImage8)
+           this.spriteImagesArray.push(spriteImage9)
+           this.spriteImagesArray.push(spriteImage10)
+       }
  
 
 
