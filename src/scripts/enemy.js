@@ -7,6 +7,7 @@ import EnemyBullet from "./enemy_bullet";
 import Level from "./level";
 class Enemy extends MovingObject{
     constructor(options) {
+        // this.ctx = options.ctx
         options = options || {}
         options.color = Enemy.COLOR
         options.radius = Enemy.RADIUS
@@ -35,10 +36,14 @@ class Enemy extends MovingObject{
     collideWith(otherObject) {
         // console.log(otherObject)
         if (otherObject instanceof Bullet) {
+            let shotImage = new Image();
+            shotImage.src = "./src/images/enemy2.png"
+            this.game.ctx.drawImage(shotImage,otherObject.pos[0], otherObject.pos[1], 20,20)
             if(this.game.level === Level.level2){
                 
                 if(this.health > 0){
                     this.health -= otherObject.damage;
+                    otherObject.remove()
                     return true;
                 }else{
                     console.log(this.health)

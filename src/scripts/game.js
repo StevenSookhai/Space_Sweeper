@@ -4,6 +4,7 @@ import EnemyBullet from "./enemy_bullet"
 import Level from "./level"
 import Ship  from "./ship"
 import Backgroud from "./background"
+import Item from "./item"
 // import Level from "./level"
 class Game {
     constructor(ctx) {
@@ -20,6 +21,7 @@ class Game {
     this.score = 0
     // this.addEnemies();
     this.spawnEnemies();
+    this.spawnItems();
     // this.enemyShoots();
     this.maxEnemy = 2 
     this.background = new Image()
@@ -49,10 +51,18 @@ class Game {
 
     spawnEnemies(){
         setInterval(() => {
-            const enemy = new Enemy({ game: this })
+            const enemy = new Enemy({ game: this})
             this.enemies.push(enemy)
         }, 1000);
     //    this.enemyShoots();
+    }
+
+    spawnItems() {
+        setInterval(() => {
+            const item = new Item({ game: this })
+            this.items.push(item)
+        }, 2000);
+        //    this.enemyShoots();
     }
 
     enemyShoots(){
@@ -87,6 +97,13 @@ class Game {
     randomPos() {
         const x = Game.WIDTH + 100
         const y = Math.random() * (Game.HEIGHT)
+        return [x, y]
+    }
+
+    itemRandomPos() {
+        // console.log(this.game.Game.WIDTH)
+        const x = Math.random() * (Game.WIDTH - 200)
+        const y = Math.random() * (Game.HEIGHT - 200)
         return [x, y]
     }
     
@@ -154,6 +171,13 @@ class Game {
         this.enemyBullets.forEach(bullet => {
             bullet.drawBullet(ctx)
         })
+
+        this.items.forEach(item => {
+            // item.pos = this.itemRandomPos();
+            // console.log(item.pos)
+            console.log(item)
+            item.draw(ctx)
+        })
         
         
     }
@@ -184,6 +208,11 @@ class Game {
                 const obj2 = allObjects[j];
 
                 if (obj1.isCollided(obj2)) {
+                    if ((obj1 instanceof Bullet && obj2 instanceof Enemy) || (obj1 instanceof Enemy && obj2 instanceof Bullet)){
+                        let shotImage = new Image();
+                        shotImage.src = "./src/images/hit.png"
+                        this.ctx.drawImage(shotImage, obj1.pos[0] - 30, obj1.pos[1] - 30, 100, 100)
+                    }
                     const collision = obj1.collideWith(obj2);
                     if (collision) return;
                 }
@@ -245,8 +274,10 @@ class Game {
         // console.log(this.enemies)
         // console.log(this.currentEnemies)
         if(this.score === 10){
-            this.currentEnemies = []
+            this.enemies = []
+            this.score +=1
             this.level = Level.level2
+            // this.score -=1
         }
         this.moveObjects(delta);
         this.checkCollisions()
