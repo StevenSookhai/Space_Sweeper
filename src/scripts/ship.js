@@ -14,7 +14,7 @@ class Ship extends MovingObject {
         super(options)
         this.spriteImage = new Image()
         this.spriteImagesArray = []
-        this.type = 1
+        this.type = 3
         this.addSprites();
         // console.log(this.spriteImagesArray)
         console.log(this.spriteImagesArray)
@@ -89,7 +89,7 @@ class Ship extends MovingObject {
 
         if (this.type === 3) {
             dmg = 80
-            pos = [this.pos[0] + 87, this.pos[1] - 60]
+            pos = [this.pos[0] + 87, this.pos[1] - 63]
             pos2 = [this.pos[0] + 83, this.pos[1] + 62]
         }
         

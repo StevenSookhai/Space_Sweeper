@@ -27,7 +27,7 @@ class GameView{
     const timeDelta = time - this.lastTime;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.game.step(timeDelta);
-    this.game.handleBackground(this.ctx);
+    // this.game.handleBackground(this.ctx);
     this.game.draw(this.ctx);
     this.lastTime = time;
     requestAnimationFrame(this.animate.bind(this));

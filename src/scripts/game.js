@@ -35,33 +35,19 @@ class Game {
     this.currentFrames = 0
     this.framesDrawn = 0
     this.deltaTime = 0
-
-    // this.addShip();
-    // console.log(this.enemies)
-    // this.ctx = ctx
-    // console.log(this.ctx)
+    this.explosionArr = []
+    this.addExplosions();
+    this.enemyDead = false;
     }
-
-    // addEnemies(){
-    //     // console.log(this.ctx)
-    //     // console.log("Adding Enemies")
-    //     for(let i = 0; i < 5; i++){
-    //         let enemy = new Enemy({ game: this })
-    //         this.enemies.push(enemy)
-    //     }
-    //     console.log(this.enemies)
-    //     this.currentEnemies.push(this.enemies.pop())
-    //     this.currentEnemies.push(this.enemies.pop())
-    //     console.log(this.currentEnemies)
-        // console.log("Current Enemies added")
-    // }
 
     spawnEnemies(){
         const timerID = setInterval(() => {
             const enemy = new Enemy({ game: this})
             this.enemies.push(enemy)
+            // this.enemyShoots()
         }, 1000);
     //    this.enemyShoots();
+
         return timerID
     }
     
@@ -74,7 +60,7 @@ class Game {
         setInterval(() => {
             const item = new Item({ game: this })
             this.items.push(item)
-        }, 2000);
+        }, 10000);
         //    this.enemyShoots();
     }
 
@@ -87,7 +73,6 @@ class Game {
         }, 3000);
 
     }
-
     addShip(){
         // console.log("In game addShip")
         const ship = new Ship({game: this})
@@ -95,17 +80,15 @@ class Game {
         ship.draw(this.ctx)//REMEMBER TO COMMENT THIS BACK IN
         // console.log(ship)
         this.ships.push(ship)
-        // console.log(this.ships)
         return ship
     }
 
     addBullet(bullet){
         this.bullets.push(bullet)
-        // console.log(this.bullets)
     }
-    // addEnemyBullet(bullet){
-    //     this.enemyBullets.push(bullet)
-    // }
+    addEnemyBullet(bullet){
+        this.enemyBullets.push(bullet)
+    }
 
     randomPos() {
         const x = Game.WIDTH + 100
@@ -114,7 +97,6 @@ class Game {
     }
 
     itemRandomPos() {
-        // console.log(this.game.Game.WIDTH)
         const x = Math.random() * (Game.WIDTH - 200)
         const y = Math.random() * (Game.HEIGHT - 200)
         return [x, y]
@@ -129,12 +111,6 @@ class Game {
     handleBackground(ctx){
     let background = new Image();
     background.src = this.level.background_src
-    // const backgroundMove = new Backgroud(background, this, 0.5, ctx)
-    
-    // backgroundMove.update()
-    // backgroundMove.draw();
-        // // console.log(background)
-        // // console.log(this.background)
         ctx.drawImage(background, this.x, 0, Game.WIDTH, Game.HEIGHT)
         ctx.drawImage(background, this.x2, 0, Game.WIDTH, Game.HEIGHT)
 
@@ -148,80 +124,87 @@ class Game {
         } else {
             this.x2 -= this.gameSpeed
         }
-
-
-        // console.log(this.x)
-        // this.x--;
-        // let background2 = new Image()
-        // background2.src = "./src/images/Stars_Small_2.png"
-        // ctx.drawImage(background2, 0, 0, Game.WIDTH, Game.HEIGHT)
-        // let background3 = new Image()
-        // background3.src = "./src/images/Stars_Small_1.png"
-        // ctx.drawImage(background3, 0, 0, Game.WIDTH, Game.HEIGHT)
     }
 
-    // drawShipImage(){
+    playExplosion(pos, num) {
+        let i = 0
+        num / 2
+        i = num % this.explosionArr.length
+        if (i < 6) {
+            // console.log(this.i)
+            this.ctx.drawImage(this.explosionArr[i], pos[0], pos[1], 100, 100)
 
+            i++
+        } else {
+            i = 0
+        }
+    }
+
+    // handleEnemiesProjecties(){
+    //     for (let i = 0; i < this.enemyBullets.length; i++) {
+    //         console.log(this.enemyBullets[i])
+    //         this.enemyBullets[i].update();
+    //         this.enemyBullets[i].draw(this.ctx);
+    // }
     // }
 
-    draw(ctx){
-        
-        // console.log(this.enemies)
+    draw(func){
+        // if (func){
+        //     func()
+        //     return
+        // }
         this.enemies.forEach(enemy =>{
-            // enemy.draw(ctx)
-            enemy.drawEnemy(ctx)
+            // console.log(this.enemyDead)
+            enemy.drawEnemy(this.ctx)
             // enemy.dead(this.currentFrames % 16)
-
-            // enemy.dead();
+            // if(this.enemyDead){
+            //     // enemy.dead(this.currentFrames % 16){
+            //         this.ctx.drawImage(this.playExplosion(), enemy.pos[0], enemy.pos[1], 50,50)
+            //         this.enemyDead = false
+            //     }
+            // }
         })
-        // console.log(this.enemies)
-        // this.currentEnemies.forEach(enemy => {
-        //     console.log(this.currentEnemies)
-        //     console.log(enemy)
-        //     enemy.draw(ctx)
-        // })
-        // let count = 0
-        // setInterval(this.enemies[count], 1000)
+
+        // if(this.animations.length > 0){
+        //     this.animations.forEach(fn => {
+        //         fn.call(this.deltaTime)
+        //     })
+        // }
 
         this.items.forEach(item => {
-            // item.pos = this.itemRandomPos();
-            // console.log(item.pos)
-            // console.log(item)
-            // item.draw(ctx)
-            item.drawCoin(ctx, this.currentFrames % 16)
+
+            item.drawCoin(this.ctx, this.currentFrames % 16)
         })
         this.ships.forEach(ship => {
-            ship.draw(ctx)
-            ship.drawShip(ctx)
+            ship.draw(this.ctx)
+            ship.drawShip(this.ctx)
         })
         this.bullets.forEach(bullet => {
-            bullet.drawBullet(ctx)
+            bullet.drawBullet(this.ctx)
         })
 
         this.enemyBullets.forEach(bullet => {
-            bullet.drawBullet(ctx)
+            bullet.draw(this.ctx)
         })
         this.bossArr.forEach(boss => {
-            // boss.draw(ctx)
-            boss.drawBoss(ctx)// add draw to boss
+            boss.drawBoss(this.ctx)// add draw to boss
         })
 
         
         
     }
     moveObjects(time){
-        // let enemyCount = 0
-        //     if(this.maxEnemy > enemyCount){
                 this.enemies.forEach(enemy => {
                      enemy.move(time)
                 })
         // })
 
-        // this.ships.forEach(ship => {
-        //     ship.move(time)
-        // })
-        // console.log(this.bullets)
+
         this.bullets.forEach(bullet => {
+            bullet.move(time)
+        })
+
+        this.enemyBullets.forEach(bullet => {
             bullet.move(time)
         })
         
@@ -249,94 +232,94 @@ class Game {
                     // }
                     const collision = obj1.collideWith(obj2);
                     if (collision) return;
-                    // return
                 }
             }
         }
     }
 
+    removeAnimation(){
+        setTimeout(() => {
+            this.animations.slice(1)
+        }, 0)
+    }
     outOfRange(pos, object){
-        // console.log(pos)
         if (object instanceof Bullet){
             return (pos[0] < 0) || (pos[1] < 0) ||
             (pos[0] > Game.WIDTH) || (pos[1] > Game.HEIGHT);
-        }else if(object instanceof Enemy){
+        }else if(object instanceof Enemy || object instanceof EnemyBullet){
             return (pos[0] < 0) || (pos[1] < 0) || (pos[1] > Game.HEIGHT);
-            // console.log("This is an enemy")
         }
     }
+
+    addExplosions() {
+        const explosion1 = new Image()
+        const explosion2 = new Image()
+        const explosion3 = new Image()
+        const explosion4 = new Image()
+        const explosion5 = new Image()
+        const explosion6 = new Image()
+
+        explosion1.src = "./src/images/enemy_animations/exp1.png"
+        explosion2.src = "./src/images/enemy_animations/exp2.png"
+        explosion3.src = "./src/images/enemy_animations/exp3.png"
+        explosion4.src = "./src/images/enemy_animations/exp4.png"
+        explosion5.src = "./src/images/enemy_animations/exp5.png"
+        explosion6.src = "./src/images/enemy_animations/exp6.png"
+
+        this.explosionArr.push(explosion1)
+        this.explosionArr.push(explosion2)
+        this.explosionArr.push(explosion3)
+        this.explosionArr.push(explosion4)
+        this.explosionArr.push(explosion5)
+        this.explosionArr.push(explosion6)
+
+    }
     remove(object){
-        // console.log(object)
-        // console.log(object)
-        // console.log("In game Remove")
+
         if (object instanceof Enemy) {
+            
             // object.dead(this.currentFrames % 16);
+            this.playExplosion(object.pos, this.currentFrames % 16)
             setTimeout(() => {
                 this.enemies.splice(this.enemies.indexOf(object), 1)
             }, 0)
-            // console.log("deleting Enemy")
         }
         else if (object instanceof Bullet) {
-            // console.log("removing bullet")
-            // console.log(this.bullets)
             setTimeout(() => {
                 this.bullets.splice(this.bullets.indexOf(object), 1)
             }, 0)
         }
         else if (object instanceof EnemyBullet) {
-            // console.log("removing Enemy bullet")
-            // console.log(this.bullets)
             setTimeout(() => {
                 this.enemyBullets.splice(this.enemyBullets.indexOf(object), 1)
             }, 0)
         }
         else if (object instanceof Item) {
-            // console.log("removing Enemy bullet")
-            // console.log(this.bullets)
             setTimeout(() => {
                 this.items.splice(this.items.indexOf(object), 1)
             }, 0)
         }
         else if (object instanceof Boss) {
-            // console.log("removing Enemy bullet")
-            // console.log(this.bullets)
             setTimeout(() => {
                 this.bossArr.splice(this.bossArr.indexOf(object), 1)
             }, 0)
         }
     }
-    // enemyCreator(){
-    //     const enemy = new Enemy({ game: this })
-    //     this.enemies.push(enemy)
-    //     return enemy.spawnEnemies.bind(enemy, this)
-    // }
 
+    
     update(func = false){
         if (func){
             return func
         }
     }
     step(delta){
-        if (func) {
+        // if (func) {
 
-        }
+        // }
+
+        // this.handleEnemiesProjecties()
         this.deltaTime = delta
-        // if(this.currentEnemies.length === 0 && this.enemies.length > 2 ){
-        //     // console.log("infirst ")
-        //     while(this.maxEnemy > 0 ){
-        //         this.currentEnemies.push(this.enemies.pop())
-        //         this.maxEnemy--
-        //     }
-        // }
-        // else if (this.currentEnemies.length === 1){
-        //     this.currentEnemies.push(this.enemies.pop())
-        //     this.maxEnemy = 2
-        // }else{
-        //     this.maxEnemy = 2
-        // }
-        // console.log(this.bullets)
-        // console.log(this.enemies)
-        // console.log(this.currentEnemies)
+        
         if(this.bossSpawned){
             clearInterval(this.enemiesTimer)
         }
@@ -345,23 +328,15 @@ class Game {
             this.enemies = []
             this.score +=1
             this.level = Level.level2
-            // this.score -=1
         }
 
-        if(this.level === Level.level2 && this.score === 12){
+        if(this.level === Level.level2 && this.score === 30){
             this.level === Level.level2
             this.bossSpawned = true
             this.spawnBoss()
             this.score += 1
         }
 
-        // if (this.score === 20) {
-        //     this.enemies = []
-        //     this.score += 1
-        //     this.level = Level.level1
-        //     // this.score -=1
-        // }
-        // Enemy.update()
         if(this.currency === 100){
             this.ships[0].type = 2
             // this.ships[0].i = 2

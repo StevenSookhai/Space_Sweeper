@@ -45,9 +45,9 @@ class Enemy extends MovingObject{
     collideWith(otherObject) {
         // console.log(otherObject)
         if (otherObject instanceof Bullet) {
-            let shotImage = new Image();
-            shotImage.src = "./src/images/enemy2.png"
-            this.game.ctx.drawImage(shotImage,otherObject.pos[0], otherObject.pos[1], 20,20)
+            // let shotImage = new Image();
+            // shotImage.src = "./src/images/enemy2.png"
+            // this.game.ctx.drawImage(shotImage,otherObject.pos[0], otherObject.pos[1], 20,20)
             if(this.game.level === Level.level2){
                 
                 if(this.health > 0){
@@ -55,19 +55,22 @@ class Enemy extends MovingObject{
                     otherObject.remove()
                     return true;
                 }else{
-                    console.log(this.health)
-                    console.log("en bull collid 1st")
+                    // console.log(this.health)
+                    // console.log("en bull collid 1st")
                     this.game.score += 1
                     // console.log(this.game.score)
-                    // this.dead()
-                this.notDead = true
+                    // this.game.animations.push(this.dead())
+                //     this.game.enemyDead = true
+                // this.notDead = true
+                    this.dead(this.game.currentFrames % 16)
                     this.remove()
                     otherObject.remove()
                     return true
                 }
             } else if (this.game.level !== Level.level2){
             this.game.score += 1 
-            console.log(this.game.score)
+            this.dead(this.game.currentFrames % 16);
+            // console.log(this.game.score)
             this.remove()
             otherObject.remove()
             return true
@@ -85,12 +88,12 @@ class Enemy extends MovingObject{
 
     enemyShootBullet() {
         const relVel = Util.scale(
-            Util.dir([3]),
+            Util.dir(this.vel),
             EnemyBullet.SPEED
         );
 
         const bulletVel = [
-            relVel[0] + 3, relVel[1] + this.vel[1]
+            relVel[0] + this.vel[0], relVel[1] + this.vel[1]
         ];
         
         const pos = [this.pos[0] - 20, this.pos[1] - 25]
@@ -161,6 +164,7 @@ class Enemy extends MovingObject{
 
 }
 
+EnemyBullet.SPEED = 15
 Enemy.COLOR = "green";
 Enemy.RADIUS = 40;
 export default Enemy;
