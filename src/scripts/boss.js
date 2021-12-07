@@ -14,6 +14,11 @@ class Boss extends MovingObject{
         this.health = 1000
         this.spriteImage = new Image()
         this.spriteImage.src = "./src/images/boss.png"
+        this.spriteImagesArray = []
+        this.missileArray = []
+        this.addSpritesImages();
+        this.addMissile();
+        this.states = ["Attacking", "Idle","Ultimate","Ded"]
 
     }
 
@@ -54,6 +59,84 @@ class Boss extends MovingObject{
             // }
         }
     return false
+    }
+
+    attack1(){
+
+    }
+
+    attack2(){
+
+    }
+
+
+
+    update(){
+
+    }
+
+    draw(){
+
+    }
+
+    addSpritesImages(){
+        let spriteImage1 = new Image()
+        let spriteImage2 = new Image()
+        let spriteImage3 = new Image()
+        let spriteImage4 = new Image()
+        let spriteImage5 = new Image()
+        let spriteImage6 = new Image()
+        let spriteImage7 = new Image()
+        let spriteImage8 = new Image()
+        let spriteImage9 = new Image()
+        let spriteImage10 = new Image()
+
+        spriteImage1.src = "./src/images/boss_animations/Boss_1.png"
+        spriteImage2.src = "./src/images/boss_animations/Boss_2.png"
+        spriteImage3.src = "./src/images/boss_animations/Boss_3.png"
+        spriteImage4.src = "./src/images/boss_animations/Boss_4.png"
+        spriteImage5.src = "./src/images/boss_animations/Boss_5.png"
+        spriteImage6.src = "./src/images/boss_animations/Boss_6.png"
+        spriteImage7.src = "./src/images/boss_animations/Boss_7.png"
+        spriteImage8.src = "./src/images/boss_animations/Boss_8.png"
+        // spriteImage9.src = "./src/images/ship/ship2/ship_2_8.png"
+        // spriteImage10.src = "./src/images/ship/ship2/ship_2_9.png"
+
+        this.spriteImagesArray.push(spriteImage1)
+        this.spriteImagesArray.push(spriteImage2)
+        this.spriteImagesArray.push(spriteImage3)
+        this.spriteImagesArray.push(spriteImage4)
+        this.spriteImagesArray.push(spriteImage5)
+        this.spriteImagesArray.push(spriteImage6)
+        this.spriteImagesArray.push(spriteImage7)
+        this.spriteImagesArray.push(spriteImage8)
+        this.spriteImagesArray.push(spriteImage9)
+        this.spriteImagesArray.push(spriteImage10)
+    }
+
+    addMissile(){
+        let spriteImage1 = new Image()
+        let spriteImage2 = new Image()
+        let spriteImage3 = new Image()
+        let spriteImage4 = new Image()
+        let spriteImage5 = new Image()
+        let spriteImage6 = new Image()
+
+
+        spriteImage1.src = "./src/images/boss_animations/Missle_000.png"
+        spriteImage2.src = "./src/images/boss_animations/Missle_001.png"
+        spriteImage3.src = "./src/images/boss_animations/Missle_002.png"
+        spriteImage4.src = "./src/images/boss_animations/Missle_003.png"
+        spriteImage5.src = "./src/images/boss_animations/Missle_004.png"
+        spriteImage6.src = "./src/images/boss_animations/Missle_005.png"
+
+        this.missileArray.push(spriteImage1)
+        this.missileArray.push(spriteImage2)
+        this.missileArray.push(spriteImage3)
+        this.missileArray.push(spriteImage4)
+        this.missileArray.push(spriteImage5)
+        this.missileArray.push(spriteImage6)
+
     }
 }
 
