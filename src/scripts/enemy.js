@@ -104,6 +104,8 @@ class Enemy extends MovingObject{
 
     }
 
+    
+
 }
 
 Enemy.COLOR = "green";

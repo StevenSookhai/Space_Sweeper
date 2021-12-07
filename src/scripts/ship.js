@@ -14,7 +14,7 @@ class Ship extends MovingObject {
         super(options)
         this.spriteImage = new Image()
         this.spriteImagesArray = []
-        this.type = 2
+        this.type = 1
         this.addSprites();
         // console.log(this.spriteImagesArray)
         console.log(this.spriteImagesArray)
@@ -43,6 +43,7 @@ class Ship extends MovingObject {
             this.i++
         }
     }else if(this.type === 2){
+        // this.damage
         // this.i =0
         // this.i = 9
         if (this.i !== 9) {
@@ -65,6 +66,14 @@ class Ship extends MovingObject {
     // }
 
     shootBullet(){
+        let pos = [this.pos[0] + 20, this.pos[1] - 25]
+        let pos2 = [this.pos[0] + 20, this.pos[1] + 37]
+        let dmg = 10
+        if(this.type === 2 ){
+            dmg = 50
+             pos = [this.pos[0] , this.pos[1] - 43]
+             pos2 = [this.pos[0] , this.pos[1] + 55]
+        }
         const relVel = Util.scale(
             Util.dir(this.vel),
             Bullet.SPEED
@@ -73,15 +82,15 @@ class Ship extends MovingObject {
         const bulletVel = [
             relVel[0] + this.vel[0], relVel[1] + this.vel[1]
         ];
-        const pos = [this.pos[0] + 20, this.pos[1] - 25]
+        
         const bullet = new Bullet({
             pos: pos,
             vel: bulletVel,
             color: this.color,
-            game: this.game
+            game: this.game,
+            damage: dmg
         });
 
-        const pos2= [this.pos[0] + 20, this.pos[1] + 37]
         const bullet2 = new Bullet({
             pos: pos2,
             vel: bulletVel,

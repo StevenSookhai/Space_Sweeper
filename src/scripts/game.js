@@ -5,6 +5,7 @@ import Level from "./level"
 import Ship  from "./ship"
 import Backgroud from "./background"
 import Item from "./item"
+import Boss  from "./boss"
 // import Level from "./level"
 class Game {
     constructor(ctx) {
@@ -29,6 +30,8 @@ class Game {
     this.x2 = 1080 // Used for repeating background
     this.gameSpeed = 10;
     this.currency = 0
+    this.bossSpawned = false;
+    this.bossArr = []
 
     // this.addShip();
     // console.log(this.enemies)
@@ -57,6 +60,11 @@ class Game {
         }, 1000);
     //    this.enemyShoots();
         return timerID
+    }
+    
+    spawnBoss(){
+        const boss = new Boss({game: this})
+        this.bossArr.push(boss)
     }
 
     spawnItems() {
@@ -106,6 +114,12 @@ class Game {
         // console.log(this.game.Game.WIDTH)
         const x = Math.random() * (Game.WIDTH - 200)
         const y = Math.random() * (Game.HEIGHT - 200)
+        return [x, y]
+    }
+
+    bossSpawnLocation() {
+        const x = Game.WIDTH + 200
+        const y = (Game.HEIGHT / 2) - 30
         return [x, y]
     }
     
@@ -180,6 +194,10 @@ class Game {
         this.enemyBullets.forEach(bullet => {
             bullet.drawBullet(ctx)
         })
+        this.bossArr.forEach(boss => {
+            // boss.draw(ctx)
+            boss.drawBoss(ctx)// add draw to boss
+        })
 
         
         
@@ -199,9 +217,15 @@ class Game {
         this.bullets.forEach(bullet => {
             bullet.move(time)
         })
+        
+        this.bossArr.forEach(boss => {
+          if(this.bossArr[0].pos[0] > 1000){
+            boss.move(time)
+          }
+        })
     }
     getAllObjects(){ // grab all current objects 
-        return [].concat(this.enemies, this.ships, this.bullets, this.items)
+        return [].concat(this.enemies, this.ships, this.bullets, this.items, this.bossArr)
     }
     checkCollisions(){
        const allObjects = this.getAllObjects();
@@ -257,6 +281,11 @@ class Game {
             // console.log(this.bullets)
             this.items.splice(this.items.indexOf(object), 1)
         }
+        else if (object instanceof Boss) {
+            // console.log("removing Enemy bullet")
+            // console.log(this.bullets)
+            this.bossArr.splice(this.bossArr.indexOf(object), 1)
+        }
 
     }
     // enemyCreator(){
@@ -282,9 +311,10 @@ class Game {
         // console.log(this.bullets)
         // console.log(this.enemies)
         // console.log(this.currentEnemies)
-        // if(this.score === 3){
-        //     clearInterval(this.enemiesTimer)
-        // }
+        if(this.bossSpawned){
+            clearInterval(this.enemiesTimer)
+        }
+
         if(this.score === 10){
             this.enemies = []
             this.score +=1
@@ -292,12 +322,19 @@ class Game {
             // this.score -=1
         }
 
-        if (this.score === 20) {
-            this.enemies = []
+        if(this.level === Level.level2 && this.score === 12){
+            this.level === Level.level2
+            this.bossSpawned = true
+            this.spawnBoss()
             this.score += 1
-            this.level = Level.level1
-            // this.score -=1
         }
+
+        // if (this.score === 20) {
+        //     this.enemies = []
+        //     this.score += 1
+        //     this.level = Level.level1
+        //     // this.score -=1
+        // }
 
         if(this.currency === 20){
             this.ships[0].type = 2

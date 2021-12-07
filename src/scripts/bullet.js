@@ -4,7 +4,7 @@ class Bullet extends MovingObject{
     constructor(options){
         options.radius = Bullet.RADIUS
         super(options)
-        this.damage = 10;
+        this.damage = options.damage || 10;
         this.SpriteImage = new Image()
         this.SpriteImage.src = "./src/images/laser1.png"
     }
