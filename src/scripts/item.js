@@ -8,22 +8,42 @@ class Item extends MovingObject{
         options.pos = options.pos || options.game.itemRandomPos();
         super(options)
         this.spriteImage = new Image()
+        this.spriteImage.src = "./src/images/coins/Coinspritesheet-2.png"
         this.spriteImagesArray = []
         this.addSprites();
         this.itemFrame = 0;
+        this.spriteWidth  = 567;
+        this.spriteHeight = 567;
+        this.frame = 0;
+        this.maxFrame = 8;
+        this.timeSinceSpin = 0
+        this.spindInterval = 50
     }
 
-    drawItem(ctx){
-    //    console.log("drawing item")
-    //    this.spriteImage.src = "./src/images/coins/Gold_21.png"
-        if (this.itemFrame !== 9) {
-            ctx.drawImage(this.spriteImagesArray[this.itemFrame], this.pos[0] - 20, this.pos[1] - 20, 40, 40)
-            this.itemFrame++
-        } else {
-            this.itemFrame = 0
-            ctx.drawImage(this.spriteImagesArray[this.itemFrame], this.pos[0] - 20, this.pos[1] - 20, 40, 40)
-            this.itemFrame++
+    // drawItem(ctx, num){
+    // //   console.log(num)
+    //     // num -  16
+    //   this.itemFrame = num % this.spriteImagesArray.length
+    // //    this.spriteImage.src = "./src/images/coins/Gold_21.png"
+    //     if (this.itemFrame !== 9) {
+    //         ctx.drawImage(this.spriteImagesArray[this.itemFrame], this.pos[0] - 20, this.pos[1] - 20, 40, 40)
+    //         this.itemFrame++
+    //     } else {
+    //         this.itemFrame = 0
+    //         ctx.drawImage(this.spriteImagesArray[this.itemFrame], this.pos[0] - 20, this.pos[1] - 20, 40, 40)
+    //         this.itemFrame++
+    //     }
+    // }
+
+    drawCoin(ctx, delta){
+        this.timeSinceSpin += delta
+        if(this.timeSinceSpin > this.spindInterval){
+            if(this.frame > this.maxFrame) this.frame = 0
+            else this.frame++
+            this.timeSinceSpin = 0;
         }
+        ctx.drawImage(this.spriteImagesArray[this.frame], this.pos[0] - 20, this.pos[1] - 20, 40, 40)
+        // ctx.drawImage(this.spriteImage,this.frame * this.spriteWidth,0,this.spriteWidth,this.spriteHeight, this.pos[0] - 20, this.pos[1] - 20, 40, 40)
     }
     collideWith() {
 

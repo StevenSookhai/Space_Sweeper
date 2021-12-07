@@ -32,6 +32,9 @@ class Game {
     this.currency = 0
     this.bossSpawned = false;
     this.bossArr = []
+    this.currentFrames = 0
+    this.framesDrawn = 0
+    this.deltaTime = 0
 
     // this.addShip();
     // console.log(this.enemies)
@@ -71,7 +74,7 @@ class Game {
         setInterval(() => {
             const item = new Item({ game: this })
             this.items.push(item)
-        }, 6000);
+        }, 2000);
         //    this.enemyShoots();
     }
 
@@ -162,10 +165,14 @@ class Game {
     // }
 
     draw(ctx){
+        
         // console.log(this.enemies)
         this.enemies.forEach(enemy =>{
             // enemy.draw(ctx)
             enemy.drawEnemy(ctx)
+            // enemy.dead(this.currentFrames % 16)
+
+            // enemy.dead();
         })
         // console.log(this.enemies)
         // this.currentEnemies.forEach(enemy => {
@@ -181,10 +188,10 @@ class Game {
             // console.log(item.pos)
             // console.log(item)
             // item.draw(ctx)
-            item.drawItem(ctx)
+            item.drawCoin(ctx, this.currentFrames % 16)
         })
         this.ships.forEach(ship => {
-            // ship.draw(ctx)
+            ship.draw(ctx)
             ship.drawShip(ctx)
         })
         this.bullets.forEach(bullet => {
@@ -262,31 +269,41 @@ class Game {
         // console.log(object)
         // console.log(object)
         // console.log("In game Remove")
-        if(object instanceof Enemy){
+        if (object instanceof Enemy) {
+            // object.dead(this.currentFrames % 16);
+            setTimeout(() => {
+                this.enemies.splice(this.enemies.indexOf(object), 1)
+            }, 0)
             // console.log("deleting Enemy")
-            this.enemies.splice(this.enemies.indexOf(object), 1)
         }
         else if (object instanceof Bullet) {
             // console.log("removing bullet")
             // console.log(this.bullets)
-            this.bullets.splice(this.bullets.indexOf(object), 1)
+            setTimeout(() => {
+                this.bullets.splice(this.bullets.indexOf(object), 1)
+            }, 0)
         }
         else if (object instanceof EnemyBullet) {
             // console.log("removing Enemy bullet")
             // console.log(this.bullets)
-            this.enemyBullets.splice(this.enemyBullets.indexOf(object), 1)
+            setTimeout(() => {
+                this.enemyBullets.splice(this.enemyBullets.indexOf(object), 1)
+            }, 0)
         }
         else if (object instanceof Item) {
             // console.log("removing Enemy bullet")
             // console.log(this.bullets)
-            this.items.splice(this.items.indexOf(object), 1)
+            setTimeout(() => {
+                this.items.splice(this.items.indexOf(object), 1)
+            }, 0)
         }
         else if (object instanceof Boss) {
             // console.log("removing Enemy bullet")
             // console.log(this.bullets)
-            this.bossArr.splice(this.bossArr.indexOf(object), 1)
+            setTimeout(() => {
+                this.bossArr.splice(this.bossArr.indexOf(object), 1)
+            }, 0)
         }
-
     }
     // enemyCreator(){
     //     const enemy = new Enemy({ game: this })
@@ -294,7 +311,16 @@ class Game {
     //     return enemy.spawnEnemies.bind(enemy, this)
     // }
 
+    update(func = false){
+        if (func){
+            return func
+        }
+    }
     step(delta){
+        if (func) {
+
+        }
+        this.deltaTime = delta
         // if(this.currentEnemies.length === 0 && this.enemies.length > 2 ){
         //     // console.log("infirst ")
         //     while(this.maxEnemy > 0 ){
@@ -335,13 +361,24 @@ class Game {
         //     this.level = Level.level1
         //     // this.score -=1
         // }
-
-        if(this.currency === 20){
+        // Enemy.update()
+        if(this.currency === 100){
             this.ships[0].type = 2
             // this.ships[0].i = 2
             this.ships[0].addSprites();
         }
 
+        if(this.currency === 200){
+            this.ships[0].type = 3
+            // this.ships[0].i = 2
+            this.ships[0].addSprites();
+        }
+    
+        this.framesDrawn++
+        if(this.framesDrawn >= 16){
+            this.currentFrames++;
+            this.framesDrawn = 0
+        }
 
         this.moveObjects(delta);
         this.checkCollisions()

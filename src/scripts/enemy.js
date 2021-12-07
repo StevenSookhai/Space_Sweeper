@@ -17,6 +17,10 @@ class Enemy extends MovingObject{
         this.health = 100
         this.spriteImage = new Image ()
         this.spriteImage.src = this.game.level.enemy_type
+        this.explosionArr = []
+        this.addExplosions();
+        this.i = 0
+        this.notDead = false
         // this.canvasWidth = canvasWidth
         // this.canvasHeight = canvasHeight
         // this.y = Math.random() * h;
@@ -32,7 +36,12 @@ class Enemy extends MovingObject{
         // console.log("In draw En")
         ctx.drawImage(this.spriteImage, this.pos[0] - 50, this.pos[1] - 50 , 100, 100)
     }
+    update(){
+        if(this.notDead){
+            this.dead()
+        }
 
+    }
     collideWith(otherObject) {
         // console.log(otherObject)
         if (otherObject instanceof Bullet) {
@@ -49,7 +58,9 @@ class Enemy extends MovingObject{
                     console.log(this.health)
                     console.log("en bull collid 1st")
                     this.game.score += 1
-                    console.log(this.game.score)
+                    // console.log(this.game.score)
+                    // this.dead()
+                this.notDead = true
                     this.remove()
                     otherObject.remove()
                     return true
@@ -104,6 +115,48 @@ class Enemy extends MovingObject{
 
     }
 
+    dead(num){
+        console.log("In enem dead")
+        // this.explosionArr.forEach(img => {
+        //     this.game.ctx.drawImage(img, this.pos[0] - 50,this.pos[1] - 50, 100, 100)
+        // })
+            // this.game.ctx.drawImage(this.explosionArr[0], this.pos[0],this.pos[1], 100, 100)
+            num /2
+            this.i = num % this.explosionArr.length
+            if( this.i < 6){
+                
+
+                    console.log(this.i)
+                    this.game.ctx.drawImage(this.explosionArr[this.i], this.pos[0], this.pos[1], 100, 100)
+                
+            this.i++}else{
+                this.i = 0
+            }
+    }
+
+    addExplosions(){
+        const explosion1 = new Image()
+        const explosion2 = new Image()
+        const explosion3 = new Image()
+        const explosion4 = new Image()
+        const explosion5 = new Image()
+        const explosion6 = new Image()
+
+        explosion1.src = "./src/images/enemy_animations/exp1.png"
+        explosion2.src = "./src/images/enemy_animations/exp2.png"
+        explosion3.src = "./src/images/enemy_animations/exp3.png"
+        explosion4.src = "./src/images/enemy_animations/exp4.png"
+        explosion5.src = "./src/images/enemy_animations/exp5.png"
+        explosion6.src = "./src/images/enemy_animations/exp6.png"
+
+        this.explosionArr.push(explosion1)
+        this.explosionArr.push(explosion2)
+        this.explosionArr.push(explosion3)
+        this.explosionArr.push(explosion4)
+        this.explosionArr.push(explosion5)
+        this.explosionArr.push(explosion6)
+
+    }   
     
 
 }

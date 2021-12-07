@@ -44,7 +44,7 @@ class Ship extends MovingObject {
         }
     }else if(this.type === 2){
         // this.damage
-        // this.i =0
+        // this.i = 0
         // this.i = 9
         if (this.i !== 9) {
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70, this.pos[1] - 55, 130, 120)
@@ -54,7 +54,19 @@ class Ship extends MovingObject {
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70, this.pos[1] - 55, 130, 120)
             this.i++
         }
-    }
+        
+    } else if (this.type === 3) {
+        // this.damage
+        // this.i = 7
+        // this.i = 9
+        if (this.i !== 9) {
+            ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 180, this.pos[1] - 90, 350, 180)
+            this.i++
+        } else {
+            this.i = 0
+            ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 180, this.pos[1] - 90, 350, 180)
+            this.i++
+        }
     
     }
     // handleShipImage(ctx){
@@ -64,7 +76,7 @@ class Ship extends MovingObject {
     //     this.spriteImage.src = "./src/images/ship_lv1.png"
     //     ctx.drawImage(this.spriteImage, this.pos[0] - 45, this.pos[1] - 50, 100, 100)
     // }
-
+    }
     shootBullet(){
         let pos = [this.pos[0] + 20, this.pos[1] - 25]
         let pos2 = [this.pos[0] + 20, this.pos[1] + 37]
@@ -74,6 +86,13 @@ class Ship extends MovingObject {
              pos = [this.pos[0] , this.pos[1] - 43]
              pos2 = [this.pos[0] , this.pos[1] + 55]
         }
+
+        if (this.type === 3) {
+            dmg = 80
+            pos = [this.pos[0] + 87, this.pos[1] - 60]
+            pos2 = [this.pos[0] + 83, this.pos[1] + 62]
+        }
+        
         const relVel = Util.scale(
             Util.dir(this.vel),
             Bullet.SPEED
@@ -168,6 +187,42 @@ class Ship extends MovingObject {
            this.spriteImagesArray.push(spriteImage10)
            console.log(this.spriteImagesArray)
        }
+       else if (this.type === 3){
+           this.spriteImagesArray = []
+           let spriteImage1 = new Image()
+           let spriteImage2 = new Image()
+           let spriteImage3 = new Image()
+           let spriteImage4 = new Image()
+           let spriteImage5 = new Image()
+           let spriteImage6 = new Image()
+           let spriteImage7 = new Image()
+           let spriteImage8 = new Image()
+           let spriteImage9 = new Image()
+           let spriteImage10 = new Image()
+
+           spriteImage1.src = "./src/images/ship/ship3/ship3_0.png"
+           spriteImage2.src = "./src/images/ship/ship3/ship3_1.png"
+           spriteImage3.src = "./src/images/ship/ship3/ship3_2.png"
+           spriteImage4.src = "./src/images/ship/ship3/ship3_3.png"
+           spriteImage5.src = "./src/images/ship/ship3/ship3_4.png"
+           spriteImage6.src = "./src/images/ship/ship3/ship3_5.png"
+           spriteImage7.src = "./src/images/ship/ship3/ship3_6.png"
+           spriteImage8.src = "./src/images/ship/ship3/ship3_7.png"
+           spriteImage9.src = "./src/images/ship/ship3/ship3_8.png"
+           spriteImage10.src = "./src/images/ship/ship3/ship3_9.png"
+
+           this.spriteImagesArray.push(spriteImage1)
+           this.spriteImagesArray.push(spriteImage2)
+           this.spriteImagesArray.push(spriteImage3)
+           this.spriteImagesArray.push(spriteImage4)
+           this.spriteImagesArray.push(spriteImage5)
+           this.spriteImagesArray.push(spriteImage6)
+           this.spriteImagesArray.push(spriteImage7)
+           this.spriteImagesArray.push(spriteImage8)
+           this.spriteImagesArray.push(spriteImage9)
+           this.spriteImagesArray.push(spriteImage10)
+           console.log(this.spriteImagesArray)
+       }
  
 
 
@@ -180,7 +235,7 @@ class Ship extends MovingObject {
 
     moveShip(vel){
         
-        console.log("uhhh")
+        // console.log("uhhh")
         this.pos[0] += vel[0];
         this.pos[1] += vel[1];
     }
