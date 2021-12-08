@@ -17,42 +17,77 @@ body {
 body {
     // width: 100vw;
     // height: 100vh;
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-    
-}
-#canvas{
-border: 4px solid black;
-// background-color: black;
-    // padding-left: 0;
-    // padding-right: 0;
-    // margin-left: auto;
-    // margin-right: auto;
+    background-color: rgb(3, 3, 3);
     // display: flex;
     // justify-content: center;
     // align-items: center;
-    // height: 600px;
-    // width: 1200px;
-    // margin: auto;
-    // margin-top: 8%;
+}
+// #container{
+//   // background-color: burlywood;
+//   margin-top: 8%;
+//   display: flex;
+//   border: 5px solid black;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// #options{
+//   background-color: blue;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   align-items: center;
+//   border: 4px solid black;
+//   margin-left: auto;
+//   width: 10%;
+//   height: 600px;
+// }
+// #how-to-play{
+//   background-color: red;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   align-items: center;
+//   border: 4px solid black;
+//   margin-right: auto;
+//   width:10%;
+//   height: 600px;
+// }
+
+// #pause{
+//   width: 150%;
+//   height: 200px;
+//   margin-bottom: 410px;
+//   margin-right: 50px;
+// }
+// // * {
+// //   background-color: black;
+// // }
+// #title{
+//   color: red;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   // margin-top: 10px;
+//   font-size: 100px;
+  
+// }
+#canvas{
+border: 4px solid rgb(255, 0, 0);
+// position: relative;
+margin-right: auto;
+margin-left: 8%;
+margin-top: 10px;
+}
+
+
 // background-color: black;
 
-}
+// }
 
-#first-div {
-  
-  color: red;
-  display: flex;
-  border: 4px solid black;
-  width: 100px;
-  height: 20px;
-  justify-content: center;
-  align-items: center;
-  // margin-left: auto;
-    // margin-right: auto;
-}
+
+
+
 
 
 // this is the same as: body h1 {}

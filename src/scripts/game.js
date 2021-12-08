@@ -23,7 +23,7 @@ class Game {
     // this.addEnemies();
     this.enemiesTimer = this.spawnEnemies();
     this.spawnItems();
-    // this.enemyShoots();
+    this.enemyShoots();
     this.maxEnemy = 2 
     this.background = new Image()
     this.x = 0
@@ -39,6 +39,7 @@ class Game {
     this.addExplosions();
     this.enemyDead = false;
     this.bossTimeToAttack = 0;
+    this.bossUseUlt = false
     }
 
     spawnEnemies(){
@@ -55,6 +56,12 @@ class Game {
     spawnBoss(){
         const boss = new Boss({game: this})
         this.bossArr.push(boss)
+        this.bossUltTimer()
+    }
+    bossUltTimer(){
+        setInterval( () => {
+            this.bossTimeToAttack++
+        }, 1000)
     }
 
     spawnItems() {
@@ -71,6 +78,16 @@ class Game {
                 enemy.enemyShootBullet();
             })
         
+        }, 3000);
+
+    }
+
+    bossShoots() {
+        setInterval(() => {
+            this.bossArr.forEach(enemy => {
+                enemy.attack();
+            })
+
         }, 3000);
 
     }
@@ -93,7 +110,7 @@ class Game {
 
     randomPos() {
         const x = Game.WIDTH + 100
-        const y = Math.random() * (Game.HEIGHT)
+        const y = Math.random() * (Game.HEIGHT - 150 + Game.HEIGHT - 150)
         return [x, y]
     }
 
@@ -165,7 +182,9 @@ class Game {
             //     }
             // }
         })
-
+        // if(this.bossUseUlt){
+        //     this.bossArr[0].ultimate()
+        // }
         // if(this.animations.length > 0){
         //     this.animations.forEach(fn => {
         //         fn.call(this.deltaTime)
@@ -177,7 +196,7 @@ class Game {
             item.drawCoin(this.ctx, this.currentFrames % 16)
         })
         this.ships.forEach(ship => {
-            ship.draw(this.ctx)
+            // ship.draw(this.ctx)
             ship.drawShip(this.ctx)
         })
         this.bullets.forEach(bullet => {
@@ -185,7 +204,9 @@ class Game {
         })
 
         this.enemyBullets.forEach(bullet => {
-            bullet.draw(ctx)
+            // if(this.currentFrames % 30 ===0){
+                 bullet.draw(ctx)
+            // }
             // if(this.bossSpawned){
             //     this.bossArr[0].drawBoss(this.ctx)
             // }
@@ -320,12 +341,18 @@ class Game {
         
         this.deltaTime = delta
         
-        if(this.bossSpawned){
-            clearInterval(this.enemiesTimer)
-            if(this.currentFrames % 100 === 0){
-                    this.bossArr[0].update()
-            }
-        }
+        // if(this.bossSpawned){
+        //     clearInterval(this.enemiesTimer)
+        //         console.log("In here step")
+        //         this.bossArr[0].update()
+        //     // }
+        // }
+        // if(this.bossTimeToAttack === 5){
+        //     // this.bossArr[0].update
+        //     this.bossArr[0].stopUlt()
+        //     this.bossUseUlt = true
+        //     this.bossTimeToAttack = 0;
+        // }
 
         if(this.score === 10){
             this.enemies = []
@@ -337,16 +364,17 @@ class Game {
             this.level === Level.level2
             this.bossSpawned = true
             this.spawnBoss()
+            this.bossShoots()
             this.score += 1
         }
 
-        if(this.currency === 100){
+        if(this.currency === 10){
             this.ships[0].type = 2
             // this.ships[0].i = 2
             this.ships[0].addSprites();
         }
 
-        if(this.currency === 200){
+        if(this.currency === 20){
             this.ships[0].type = 3
             // this.ships[0].i = 2
             this.ships[0].addSprites();

@@ -14,7 +14,7 @@ class Ship extends MovingObject {
         super(options)
         this.spriteImage = new Image()
         this.spriteImagesArray = []
-        this.type = 3
+        this.type = 1
         this.addSprites();
         // console.log(this.spriteImagesArray)
         console.log(this.spriteImagesArray)
@@ -234,7 +234,6 @@ class Ship extends MovingObject {
     }
 
     moveShip(vel){
-        
         // console.log("uhhh")
         this.pos[0] += vel[0];
         this.pos[1] += vel[1];

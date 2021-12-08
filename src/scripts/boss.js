@@ -12,8 +12,9 @@ class Boss extends MovingObject{
         options.pos = options.pos || options.game.bossSpawnLocation();
         options.vel = [-3, 0]
         super(options)
+        this.game = options.game
         // options.game.score 
-        this.health = 100000
+        this.health = 10000
         this.spriteImage = new Image()
         this.spriteImage.src = "./src/images/boss.png"
         this.spriteImagesArray = []
@@ -26,13 +27,14 @@ class Boss extends MovingObject{
         this.timeToAttack = 0
         this.shieldUpTimer = 0
         this.i = 0
+        this.stopUltTimer = 0
     }
 
     drawBoss(ctx) {
         // console.log("In draw En")
         ctx.drawImage(this.spriteImage, this.pos[0] - 130, this.pos[1] - 150, 300, 300)
 
-        if(this.state === this.states[1]){
+        if(this.state === this.states[2]){
             if(this.i !==6){
                     ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] - 150, 100, 80)
                     this.i++
@@ -52,8 +54,8 @@ class Boss extends MovingObject{
             // this.game.ctx.drawImage(shotImage, otherObject.pos[0], otherObject.pos[1], 20, 20)
             // if (this.game.level === Level.level2) {
                 if (this.health > 0) {
-                    console.log(this.health)
-                    console.log("Hitting Boss")
+                    // console.log(this.health)
+                    // console.log("Hitting Boss")
                     this.health -= otherObject.damage;
                     otherObject.remove()
                     return true;
@@ -110,7 +112,20 @@ class Boss extends MovingObject{
     }
 
     ultimate(){
+        console.log("In ultimate")
+        // this.game.ctx.beginPath();
+        // this.game.ctx.rect(600, -800 , 100, 100)
+        // this.game.ctx.fill();
+        // this.game.ctx.closePath();
+        console.log(this.ultTimer)
+        this.game.ctx.drawImage(this.spriteImage, this.pos[0] - 200, this.pos[1] - 150, 500, 500)
+        // this.i++
+    }
 
+    stopUlt(){
+       return  setInterval(() => {
+            this.ultTimer++
+        },1000)
     }
 
     idle(){
@@ -122,17 +137,29 @@ class Boss extends MovingObject{
     }
 
     update(num){
-        this.ultTimer += this.ultTimer % num
-            if(this.ultTime === 30 ){
-                this.state = this.states[3];
-            }
-        if(this.state === this.states[1]){
-            setInterval(this.attack(), 2000)
-        }else if (this.state === this.states[0] ){
-            setInterval(this.attack(), 2000)
-        }else if(this.states === this.states[2]){
-            this.ultimate
+        // this.handleStates(num)
+        if(this.game.bossUseUlt && this.ultTimer !== 10){
+            this.ultimate();
+            // this.stopUlt();
         }else{
+            this.game.bossUseUlt = false
+            this.ultTimer = 0;
+        }
+    }
+
+    handleStates(num){
+        this.ultTimer += this.ultTimer % num
+        if (this.ultTime === 30) {
+            this.state = this.states[3];
+        }
+        if (this.state === this.states[1]) {
+            // setInterval(this.attack(), 2000)
+            this.attack()
+        } else if (this.state === this.states[0]) {
+            setInterval(this.attack(), 2000)
+        } else if (this.states === this.states[2]) {
+            this.ultimate
+        } else {
             this.state = this.states[3]
             dead()
         }

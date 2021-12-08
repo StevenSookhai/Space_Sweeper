@@ -14,11 +14,12 @@ class BossMissiles extends MovingObject {
 
     draw(ctx) {
         // 
+        console.log("drawing boss missiles")
         if(this.i !== 6){
-        ctx.drawImage(this.missileArray[this.i], this.pos[0] - 1, this.pos[1] - 4, 100, 100)
+        ctx.drawImage(this.missileArray[this.i], this.pos[0] - 1, this.pos[1] - 4, 100, 40)
         }else{
             this.i = 0
-            ctx.drawImage(this.missileArray[this.i], this.pos[0] - 1, this.pos[1] - 4, 100, 100)
+            ctx.drawImage(this.missileArray[this.i], this.pos[0] - 1, this.pos[1] - 4, 100, 40)
         }
     }
     collideWith() {
