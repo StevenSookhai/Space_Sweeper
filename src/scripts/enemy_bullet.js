@@ -1,7 +1,8 @@
 import Bullet  from "./bullet";
 import Enemy from "./enemy";
+import MovingObject from "./moving_object";
 
-class EnemyBullet extends Bullet{
+class EnemyBullet extends MovingObject{
     constructor(options) {
         options.radius = EnemyBullet.RADIUS
         options.vel = [-4,0]

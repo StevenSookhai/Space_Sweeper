@@ -1,7 +1,9 @@
 // import Enemy  from "./enemy";
 import MovingObject from "./moving_object";
 import Bullet from "./bullet";
-
+import EnemyBullet from "./enemy_bullet";
+import Util from "./util";
+import BossMissiles from "./boss_missiles";
 class Boss extends MovingObject{
     constructor(options){
         options = options || {}
@@ -11,7 +13,7 @@ class Boss extends MovingObject{
         options.vel = [-3, 0]
         super(options)
         // options.game.score 
-        this.health = 1000
+        this.health = 100000
         this.spriteImage = new Image()
         this.spriteImage.src = "./src/images/boss.png"
         this.spriteImagesArray = []
@@ -19,12 +21,27 @@ class Boss extends MovingObject{
         this.addSpritesImages();
         this.addMissile();
         this.states = ["Attacking", "Idle","Ultimate","Ded"]
-
+        this.state = this.states[1]
+        this.ultTimer = 0
+        this.timeToAttack = 0
+        this.shieldUpTimer = 0
+        this.i = 0
     }
 
     drawBoss(ctx) {
         // console.log("In draw En")
         ctx.drawImage(this.spriteImage, this.pos[0] - 130, this.pos[1] - 150, 300, 300)
+
+        if(this.state === this.states[1]){
+            if(this.i !==6){
+                    ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] - 150, 100, 80)
+                    this.i++
+            }else{
+                this.i = 0
+                    ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] + 150, 100, 80)
+            }
+            
+        }
     }
 
     collideWith(otherObject) {
@@ -61,22 +78,69 @@ class Boss extends MovingObject{
     return false
     }
 
-    attack1(){
+    attack(){
+        const relVel = Util.scale(
+            Util.dir(this.vel),
+            BossMissiles.SPEED
+        );
+
+        const bulletVel = [
+            relVel[0] + this.vel[0], relVel[1] + this.vel[1]
+        ];
+
+        const pos = [this.pos[0] - 20, this.pos[1] - 25]
+        const bullet = new BossMissiles({
+            pos: pos,
+            vel: bulletVel,
+            color: this.color,
+            game: this.game
+        });
+
+        const pos2 = [this.pos[0] - 20, this.pos[1] + 25]
+        const bullet2 = new BossMissiles({
+            pos: pos2,
+            vel: bulletVel,
+            color: this.color,
+            game: this.game
+        });
+
+        // console.log(bullet)
+        this.game.addEnemyBullet(bullet);
+        this.game.addEnemyBullet(bullet2)
+    }
+
+    ultimate(){
 
     }
 
-    attack2(){
+    idle(){
 
     }
 
-
-
-    update(){
+    dead(){
 
     }
 
-    draw(){
+    update(num){
+        this.ultTimer += this.ultTimer % num
+            if(this.ultTime === 30 ){
+                this.state = this.states[3];
+            }
+        if(this.state === this.states[1]){
+            setInterval(this.attack(), 2000)
+        }else if (this.state === this.states[0] ){
+            setInterval(this.attack(), 2000)
+        }else if(this.states === this.states[2]){
+            this.ultimate
+        }else{
+            this.state = this.states[3]
+            dead()
+        }
+    }
 
+    draw(arr,ctx){
+        let i = 0
+        ctx.drawImage(arr[i], this.pos[0],this.pos[1], 100, 100)
     }
 
     addSpritesImages(){
@@ -123,12 +187,12 @@ class Boss extends MovingObject{
         let spriteImage6 = new Image()
 
 
-        spriteImage1.src = "./src/images/boss_animations/Missle_000.png"
-        spriteImage2.src = "./src/images/boss_animations/Missle_001.png"
-        spriteImage3.src = "./src/images/boss_animations/Missle_002.png"
-        spriteImage4.src = "./src/images/boss_animations/Missle_003.png"
-        spriteImage5.src = "./src/images/boss_animations/Missle_004.png"
-        spriteImage6.src = "./src/images/boss_animations/Missle_005.png"
+        spriteImage1.src = "./src/images/boss_animations/Missile_000.png"
+        spriteImage2.src = "./src/images/boss_animations/Missile_001.png"
+        spriteImage3.src = "./src/images/boss_animations/Missile_002.png"
+        spriteImage4.src = "./src/images/boss_animations/Missile_003.png"
+        spriteImage5.src = "./src/images/boss_animations/Missile_004.png"
+        spriteImage6.src = "./src/images/boss_animations/Missile_005.png"
 
         this.missileArray.push(spriteImage1)
         this.missileArray.push(spriteImage2)

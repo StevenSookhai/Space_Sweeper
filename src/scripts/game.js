@@ -38,6 +38,7 @@ class Game {
     this.explosionArr = []
     this.addExplosions();
     this.enemyDead = false;
+    this.bossTimeToAttack = 0;
     }
 
     spawnEnemies(){
@@ -148,7 +149,7 @@ class Game {
     // }
     // }
 
-    draw(func){
+    draw(ctx){
         // if (func){
         //     func()
         //     return
@@ -184,7 +185,10 @@ class Game {
         })
 
         this.enemyBullets.forEach(bullet => {
-            bullet.draw(this.ctx)
+            bullet.draw(ctx)
+            // if(this.bossSpawned){
+            //     this.bossArr[0].drawBoss(this.ctx)
+            // }
         })
         this.bossArr.forEach(boss => {
             boss.drawBoss(this.ctx)// add draw to boss
@@ -313,15 +317,14 @@ class Game {
         }
     }
     step(delta){
-        // if (func) {
-
-        // }
-
-        // this.handleEnemiesProjecties()
+        
         this.deltaTime = delta
         
         if(this.bossSpawned){
             clearInterval(this.enemiesTimer)
+            if(this.currentFrames % 100 === 0){
+                    this.bossArr[0].update()
+            }
         }
 
         if(this.score === 10){
@@ -330,7 +333,7 @@ class Game {
             this.level = Level.level2
         }
 
-        if(this.level === Level.level2 && this.score === 30){
+        if(this.level === Level.level2 && this.score === 12){
             this.level === Level.level2
             this.bossSpawned = true
             this.spawnBoss()
