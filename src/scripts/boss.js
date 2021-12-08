@@ -67,6 +67,10 @@ class Boss extends MovingObject{
                     // console.log(this.game.score)
                     this.remove()
                     otherObject.remove()
+                    setTimeout(() => {
+                        this.game.gameOver = true
+                    }, 0);
+                    
                     return true
                 }
             // } else if (this.game.level !== Level.level2) {

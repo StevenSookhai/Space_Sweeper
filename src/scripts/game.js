@@ -22,8 +22,8 @@ class Game {
     this.score = 0
     // this.addEnemies();
     this.enemiesTimer = this.spawnEnemies();
-    this.spawnItems();
-    this.enemyShoots();
+    this.spawnItemsTimer = this.spawnItems();
+    this.enemiesShootTimer = this.enemyShoots();
     this.maxEnemy = 2 
     this.background = new Image()
     this.x = 0
@@ -40,8 +40,39 @@ class Game {
     this.enemyDead = false;
     this.bossTimeToAttack = 0;
     this.bossUseUlt = false
+    this.isPaused = false
+    this.gameOver = false
     }
 
+    togglePaused(){
+        if (this.isPaused){
+            this.isPaused = false
+            this.spawnItemsTimer = this.spawnItems()
+            // this.enemiesTimer 
+            this.enemyShootsTimer = this.enemyShoots();
+            this.enemiesTimer = this.spawnEnemies();
+        }else{
+            this.isPaused = true
+            clearInterval(this.spawnItemsTimer)
+            clearInterval(this.enemiesTimer)
+            clearInterval(this.enemiesShootTimer)
+        }
+    }
+
+    gameOver() {
+        if (this.gameOver) {
+            this.gameOver = false
+            this.spawnItemsTimer = this.spawnItems()
+            // this.enemiesTimer 
+            this.enemyShootsTimer = this.enemyShoots();
+            this.enemiesTimer = this.spawnEnemies();
+        } else {
+            this.gameOver = true
+            clearInterval(this.spawnItemsTimer)
+            clearInterval(this.enemiesTimer)
+            clearInterval(this.enemiesShootTimer)
+        }
+    }
     spawnEnemies(){
         const timerID = setInterval(() => {
             const enemy = new Enemy({ game: this})
@@ -65,21 +96,22 @@ class Game {
     }
 
     spawnItems() {
-        setInterval(() => {
+        const timerID = setInterval(() => {
             const item = new Item({ game: this })
             this.items.push(item)
         }, 10000);
         //    this.enemyShoots();
+        return timerID
     }
 
     enemyShoots(){
-        setInterval(() => {
+        const timerID = setInterval(() => {
             this.enemies.forEach(enemy => {
                 enemy.enemyShootBullet();
             })
         
         }, 3000);
-
+        return timerID
     }
 
     bossShoots() {
@@ -166,11 +198,33 @@ class Game {
     // }
     // }
 
-    draw(ctx){
+    draw(ctx, animateID){
         // if (func){
         //     func()
         //     return
         // }
+        if(this.isPaused){
+            ctx.rect(0,0, Game.WIDTH, Game.HEIGHT)
+            ctx.fillStyle = "rgba(0,0,0,0.5)"
+            ctx.fill();
+
+            ctx.font = "30px sans-serif";
+            ctx.fillStyle = "white"
+            ctx.textAlign = "center";
+            ctx.fillText("Paused", Game.WIDTH/2, Game.HEIGHT/2)
+        }
+        if (this.gameOver) {
+            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
+            ctx.fillStyle = "rgba(0,0,0,0)"
+            ctx.fill();
+
+            ctx.font = "30px sans-serif";
+            ctx.fillStyle = "white"
+            ctx.textAlign = "center";
+            ctx.fillText("Game Over, You Won!", Game.WIDTH / 2, Game.HEIGHT / 2)
+            // cancelAnimationFrame(animateID % 16)
+        }
+       
         this.enemies.forEach(enemy =>{
             // console.log(this.enemyDead)
             enemy.drawEnemy(this.ctx)
@@ -340,7 +394,7 @@ class Game {
     step(delta){
         
         this.deltaTime = delta
-        
+        if(this.isPaused) return
         // if(this.bossSpawned){
         //     clearInterval(this.enemiesTimer)
         //         console.log("In here step")

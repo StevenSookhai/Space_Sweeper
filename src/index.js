@@ -12,7 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = 600;
     canvas.width = 1200;
     const ctx = canvas.getContext("2d");
-    const game = new Game(ctx);
-    new GameView(game, ctx).start()   
+    let game = new Game(ctx);
+    let gameView = new GameView(game, ctx)
+    // gameView.start() 
+
+    document.addEventListener("keydown", (e) =>{
+        if(e.code ==="KeyQ"){
+            console.log("Qpressed")
+            game = new Game(ctx);
+            gameView = new GameView(game, ctx)
+            gameView.start()
+         }
+        else if (e.code === "KeyP") {
+            // gameView.pause()
+            game.togglePaused()
+            console.log("p pressed")
+        }
+    })
+    // document.addEventListener("keydown", (e) =>{
+    //     if(e.code === "KeyP"){
+    //         // gameView.pause()
+    //         game.togglePaused()
+    //         console.log("p pressed")
+    //     }
+    // })
 });
 
