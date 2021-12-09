@@ -22,7 +22,7 @@ class Boss extends MovingObject{
         // this.addSpritesImages();
         this.addMissile();
         this.states = ["Attacking", "Idle","Ultimate","Ded"]
-        this.state = this.states[1]
+        // this.state = this.states[1]
         this.ultTimer = 0
         this.timeToAttack = 0
         this.shieldUpTimer = 0
@@ -34,16 +34,16 @@ class Boss extends MovingObject{
         // console.log("In draw En")
         ctx.drawImage(this.spriteImage, this.pos[0] - 130, this.pos[1] - 150, 300, 300)
 
-        if(this.state === this.states[2]){
-            if(this.i !==6){
-                    ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] - 150, 100, 80)
-                    this.i++
-            }else{
-                this.i = 0
-                    ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] + 150, 100, 80)
-            }
+        // if(this.state === this.states[2]){
+        //     if(this.i !==6){
+        //             ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] - 150, 100, 80)
+        //             this.i++
+        //     }else{
+        //         this.i = 0
+        //             ctx.drawImage(this.missileArray[this.i], this.pos[0] - 130, this.pos[1] + 150, 100, 80)
+        //     }
             
-        }
+        // }
     }
 
     collideWith(otherObject) {
