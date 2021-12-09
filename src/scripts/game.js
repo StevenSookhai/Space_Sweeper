@@ -203,6 +203,8 @@ class Game {
         //     func()
         //     return
         // }
+
+       
         if(this.isPaused){
             ctx.rect(0,0, Game.WIDTH, Game.HEIGHT)
             ctx.fillStyle = "rgba(0,0,0,0.5)"
@@ -213,9 +215,21 @@ class Game {
             ctx.textAlign = "center";
             ctx.fillText("Paused", Game.WIDTH/2, Game.HEIGHT/2)
         }
-        if (this.gameOver) {
+        if (this.gameOver && this.ships[0].health === 0) {
             ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
-            ctx.fillStyle = "rgba(0,0,0,0)"
+            ctx.fillStyle = "rgba(0,0,0,1)"
+            ctx.fill();
+
+            ctx.font = "30px sans-serif";
+            ctx.fillStyle = "white"
+            ctx.textAlign = "center";
+            ctx.fillText("Game Over, You Lose!", Game.WIDTH / 2, Game.HEIGHT / 2)
+            // cancelAnimationFrame(animateID % 16)
+        }
+
+        if (this.gameOver && this.ships[0].health !== 0) {
+            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
+            ctx.fillStyle = "rgba(0,0,0,1)"
             ctx.fill();
 
             ctx.font = "30px sans-serif";
@@ -269,6 +283,15 @@ class Game {
             boss.drawBoss(this.ctx)// add draw to boss
         })
 
+        if (!this.gameOver) {
+            ctx.font = "24px Arial";
+            ctx.fillStyle = "gold";
+            ctx.textAlign = "center";
+            ctx.fillText(`Score: ${this.score}`, 50, 25);
+            ctx.fillText(`Coins: ${this.currency}`, 50, 50);
+            ctx.fillText(`Health: ${this.ships[0].health }`, Game.WIDTH - 75, 25);
+        }
+
         
         
     }
@@ -294,7 +317,7 @@ class Game {
         })
     }
     getAllObjects(){ // grab all current objects 
-        return [].concat(this.enemies, this.ships, this.bullets, this.items, this.bossArr)
+        return [].concat(this.enemies, this.ships, this.bullets, this.items, this.bossArr, this.enemyBullets)
     }
     checkCollisions(){
        const allObjects = this.getAllObjects();
@@ -407,6 +430,9 @@ class Game {
         //     this.bossUseUlt = true
         //     this.bossTimeToAttack = 0;
         // }
+        if(this.ships[0].health === 0){
+            this.gameOver = true
+        }
 
         if(this.score === 10){
             this.enemies = []
@@ -423,13 +449,17 @@ class Game {
         }
 
         if(this.currency === 10){
+            this.currency += 1
             this.ships[0].type = 2
+            this.ships[0].health = 200
             // this.ships[0].i = 2
             this.ships[0].addSprites();
         }
 
-        if(this.currency === 20){
+        if(this.currency === 21){
+            this.currency += 1
             this.ships[0].type = 3
+            this.ships[0].health = 300
             // this.ships[0].i = 2
             this.ships[0].addSprites();
         }

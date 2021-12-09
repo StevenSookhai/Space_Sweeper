@@ -1,5 +1,5 @@
 import MovingObject from "./moving_object";
-
+import Ship from "./ship";
 class BossMissiles extends MovingObject {
     constructor(options) {
         options.radius = BossMissiles.RADIUS
@@ -22,8 +22,13 @@ class BossMissiles extends MovingObject {
             ctx.drawImage(this.missileArray[this.i], this.pos[0] - 1, this.pos[1] - 4, 100, 40)
         }
     }
-    collideWith() {
-
+    collideWith(otherObject) {
+        if (otherObject instanceof Ship) {
+            this.remove()
+            otherObject.health -= 20
+            return true
+        }
+        return false
     }
     update() {
 

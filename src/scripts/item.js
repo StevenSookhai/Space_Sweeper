@@ -18,6 +18,7 @@ class Item extends MovingObject{
         this.maxFrame = 8;
         this.timeSinceSpin = 0
         this.spindInterval = 50
+        this.collectSound = new Audio("./src/sound/coinsound.wav")
     }
 
     // drawItem(ctx, num){

@@ -19,13 +19,20 @@ class Ship extends MovingObject {
         // console.log(this.spriteImagesArray)
         console.log(this.spriteImagesArray)
         this.i = 0
+        this.health = 100
+        this.shootSound = new Audio("./src/sound/lasershot.wav")
+        this.collectSound = new Audio("./src/sound/coinsound.wav")
+        this.engineSound = new Audio("./src/sound/engine.wav")
+        
+
         // this.handleShipImage()
     }
 
     collideWith(otherObject){
         if(otherObject instanceof Item){
             this.game.currency += 10
-            console.log(this.game.currency)
+            // console.log(this.game.currency)
+            this.collectSound.play()
             otherObject.remove()
             return true
         }
@@ -33,6 +40,7 @@ class Ship extends MovingObject {
     }
     
     drawShip(ctx){
+        this.engineSound.play();
     if (this.type === 1){
         if(this.i !== 6){
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70,  this.pos[1] - 55, 130, 120)
@@ -78,6 +86,12 @@ class Ship extends MovingObject {
     // }
     }
     shootBullet(){
+        this.shootSound.play();
+        this.shootSound.play();
+        this.shootSound.play();
+        this.shootSound.play();
+        this.shootSound.play();
+        this.shootSound.play();
         let pos = [this.pos[0] + 20, this.pos[1] - 25]
         let pos2 = [this.pos[0] + 20, this.pos[1] + 37]
         let dmg = 10

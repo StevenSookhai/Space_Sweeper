@@ -14,12 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     let game = new Game(ctx);
     let gameView = new GameView(game, ctx)
+    let playing = false;
     // gameView.start() 
-
+    const mainMenumusic = new Audio("./src/sound/main_m.mp3")
+    const backgroundMusic = new Audio("./src/sound/bgmusic.mp3")
+    document.addEventListener("click", (e) =>{
+        if (!playing){
+        mainMenumusic.play();
+        }else{
+            mainMenumusic.pause()
+        }
+    })
     document.addEventListener("keydown", (e) =>{
         if(e.code ==="KeyQ"){
+            playing = true
+            document.getElementById("start").style.display ="none"
             console.log("Qpressed")
             game = new Game(ctx);
+            backgroundMusic.play();
             gameView = new GameView(game, ctx)
             gameView.start()
          }

@@ -2,58 +2,152 @@ body {
   h1 {
     color: rgb(128, 0, 100)
   } // body h1 {}
-
-  h1 {
-
-    p {
-    color: rgb(235, 8, 8)
-    } // body h1 p {}
-  } // body h1 {}
-
   p {
-    color: rgb(252, 2, 85)
+    color: gold
   } // body p {}
 }
 body {
     // width: 100vw;
     // height: 100vh;
-    background-color: rgb(3, 3, 3);
+    background-color: rgb(0, 0, 0);
+    background-image: url("Stars_small_1.png");
     // display: flex;
     // justify-content: center;
     // align-items: center;
+    animation: stars 2s infinite ;
 }
-// #container{
-//   // background-color: burlywood;
-//   margin-top: 8%;
-//   display: flex;
-//   border: 5px solid black;
-//   justify-content: center;
-//   align-items: center;
-// }
 
-// #options{
-//   background-color: blue;
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   align-items: center;
-//   border: 4px solid black;
-//   margin-left: auto;
-//   width: 10%;
-//   height: 600px;
-// }
-// #how-to-play{
-//   background-color: red;
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   align-items: center;
-//   border: 4px solid black;
-//   margin-right: auto;
-//   width:10%;
-//   height: 600px;
-// }
+@keyframes stars {
+50%{background: opacity rgb(0, 0, 0, .5)}
+100%{background: opacity rgb(0, 0, 0, 1)}
+}
+h1{
+    font-size:50px;
+    font-family: "rubber";
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    color:midnightblue;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
 
+}
+
+.instructions{
+    color: gold;
+    border:black s;
+    font-size: 30px;
+    position: absolute;
+    margin-left: 650px;
+    // text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
+}
+.instructions-modal{
+    font-family: "rubber";
+    display: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 35px;
+    left: 0;
+    right: 0;
+    width: 500px;
+    border: 10px solid transparent;
+    padding: 15px;
+    padding: 2em;
+    text-align: center;
+
+    // line-height: 1.5;
+    color: rgb(255, 255, 255);
+}
+
+.intro p {
+    border: 4px solid black;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    font-size: 50px;
+    // -webkit-text-stroke: .3px #0afc97
+}
+#start p {
+  font-size: 50px;
+}
+#start{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+    font-family: "rubber";
+    background-image: url("Map_3.jpg");
+    text-align: center;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    font-size: 20px;
+    margin-top: 30px;
+    left: 0;
+    right: 0;
+    width: 1100px;
+    height: 510px;
+    border: 10px solid transparent;
+    padding: 15px;
+    //  background-color:black;
+    padding: 2em;
+    text-align: left;
+    animation: animate_start 60s linear infinite ;
+}
+
+@keyframes animate_start {
+0%{background-position: 0,0;}
+100%{background-position: -1000px 0; }
+}
+  
+
+.instructions:hover .instructions-modal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#start p {
+    text-align: center;
+    // font-size: 25x;
+}
+#container{
+  // background-color: burlywood;
+  margin-top: 22px;
+  // display: flex;
+  border: 5px solid black;
+  // justify-content: center;
+  // align-items: center;
+  display: grid;
+  place-items: center
+  ;
+}
+li {
+  align-items: center;
+}
+#options{
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  border: 4px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 20px;
+}
+
+#nav-links{
+  font-size: small ;
+  border: 4px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+}
 // #pause{
 //   width: 150%;
 //   height: 200px;
@@ -63,21 +157,22 @@ body {
 // // * {
 // //   background-color: black;
 // // }
-// #title{
-//   color: red;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   // margin-top: 10px;
-//   font-size: 100px;
+#title{
+  color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid black;
+  // margin-top: 10px;
+  font-size: 80px;
   
-// }
+}
 #canvas{
-border: 4px solid rgb(255, 0, 0);
+// border: 4px solid rgb(255, 0, 0);
 // position: relative;
 margin-right: auto;
-margin-left: 8%;
-margin-top: 10px;
+margin-left: auto;
+// margin-top: 10px;
 }
 
 

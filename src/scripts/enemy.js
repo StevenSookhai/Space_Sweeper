@@ -21,6 +21,8 @@ class Enemy extends MovingObject{
         this.addExplosions();
         this.i = 0
         this.notDead = false
+        this.deadSound = new Audio("./src/sound/expsound.wav")
+        this.shootSound = new Audio("./src/sound/lasershot.wav")
         // this.canvasWidth = canvasWidth
         // this.canvasHeight = canvasHeight
         // this.y = Math.random() * h;
@@ -43,6 +45,7 @@ class Enemy extends MovingObject{
 
     }
     collideWith(otherObject) {
+        // this.shootSound.play();
         // console.log(otherObject)
         if (otherObject instanceof Bullet) {
             // let shotImage = new Image();
@@ -55,6 +58,7 @@ class Enemy extends MovingObject{
                     otherObject.remove()
                     return true;
                 }else{
+                    this.deadSound.play()
                     // console.log(this.health)
                     // console.log("en bull collid 1st")
                     this.game.score += 1
@@ -71,6 +75,7 @@ class Enemy extends MovingObject{
             this.game.score += 1 
             this.dead(this.game.currentFrames % 16);
             // console.log(this.game.score)
+                this.deadSound.play()
             this.remove()
             otherObject.remove()
             return true
@@ -79,14 +84,15 @@ class Enemy extends MovingObject{
         // }else if (otherObject instanceof Enemy){
         //     return false
         // }
-        else if (otherObject instanceof Ship){
-            this.remove()
-            return true
-        }
+        // else if (otherObject instanceof Ship){
+        //     otherObject.health -= 10
+        //     return true
+        // }
         return false
     }
 
     enemyShootBullet() {
+        
         const relVel = Util.scale(
             Util.dir(this.vel),
             EnemyBullet.SPEED
@@ -96,7 +102,7 @@ class Enemy extends MovingObject{
             relVel[0] + this.vel[0], relVel[1] + this.vel[1]
         ];
         
-        const pos = [this.pos[0] - 20, this.pos[1] - 25]
+        const pos = [this.pos[0] - 20, this.pos[1] - 40]
         const bullet = new EnemyBullet ({
             pos: pos,
             vel: bulletVel,
@@ -104,7 +110,7 @@ class Enemy extends MovingObject{
             game: this.game
         });
 
-        const pos2 = [this.pos[0] - 20, this.pos[1] + 25]
+        const pos2 = [this.pos[0] - 20, this.pos[1] + 40]
         const bullet2 = new EnemyBullet({
             pos: pos2,
             vel: bulletVel,
