@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(e.code ==="KeyQ"){
             playing = true
             document.getElementById("start").style.display ="none"
-            console.log("Qpressed")
+            // console.log("Qpressed")
             game = new Game(ctx);
             backgroundMusic.play();
             gameView = new GameView(game, ctx)

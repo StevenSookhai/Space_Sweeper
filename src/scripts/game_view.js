@@ -72,7 +72,7 @@ class GameView{
     this.lastTime = time;
     // this.gameOver();
     // this.handlePause()
-    console.log(this.currentAnimationFrameID);
+    // console.log(this.currentAnimationFrameID);
     if(!this.game.gameOver){
         // this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.currentAnimationFrameID = requestAnimationFrame(this.animate.bind(this));

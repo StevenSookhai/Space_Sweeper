@@ -19,7 +19,7 @@ class Boss extends MovingObject{
         this.spriteImage.src = "./src/images/boss.png"
         this.spriteImagesArray = []
         this.missileArray = []
-        this.addSpritesImages();
+        // this.addSpritesImages();
         this.addMissile();
         this.states = ["Attacking", "Idle","Ultimate","Ded"]
         this.state = this.states[1]
