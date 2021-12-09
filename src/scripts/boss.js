@@ -16,7 +16,7 @@ class Boss extends MovingObject{
         // options.game.score 
         this.health = 10000
         this.spriteImage = new Image()
-        this.spriteImage.src = "./src/images/boss.png"
+        this.spriteImage.src = "./src/images/Boss.png"
         this.spriteImagesArray = []
         this.missileArray = []
         // this.addSpritesImages();
