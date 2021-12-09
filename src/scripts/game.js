@@ -99,7 +99,7 @@ class Game {
         const timerID = setInterval(() => {
             const item = new Item({ game: this })
             this.items.push(item)
-        }, 10000);
+        }, 3000);
         //    this.enemyShoots();
         return timerID
     }
@@ -440,7 +440,7 @@ class Game {
             this.level = Level.level2
         }
 
-        if(this.level === Level.level2 && this.score === 12){
+        if(this.level === Level.level2 && this.score === 25){
             this.level === Level.level2
             this.bossSpawned = true
             this.spawnBoss()
@@ -448,7 +448,7 @@ class Game {
             this.score += 1
         }
 
-        if(this.currency === 10){
+        if(this.currency === 15){
             this.currency += 1
             this.ships[0].type = 2
             this.ships[0].health = 200
@@ -456,7 +456,7 @@ class Game {
             this.ships[0].addSprites();
         }
 
-        if(this.currency === 21){
+        if(this.currency === 26){
             this.currency += 1
             this.ships[0].type = 3
             this.ships[0].health = 300

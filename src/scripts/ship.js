@@ -30,7 +30,7 @@ class Ship extends MovingObject {
 
     collideWith(otherObject){
         if(otherObject instanceof Item){
-            this.game.currency += 10
+            this.game.currency += 5
             // console.log(this.game.currency)
             this.collectSound.play()
             otherObject.remove()

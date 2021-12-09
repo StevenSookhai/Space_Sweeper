@@ -14,7 +14,7 @@ class BossMissiles extends MovingObject {
 
     draw(ctx) {
         // 
-        console.log("drawing boss missiles")
+        // console.log("drawing boss missiles")
         if(this.i !== 6){
         ctx.drawImage(this.missileArray[this.i], this.pos[0] - 1, this.pos[1] - 4, 100, 40)
         }else{
@@ -23,12 +23,12 @@ class BossMissiles extends MovingObject {
         }
     }
     collideWith(otherObject) {
-        if (otherObject instanceof Ship) {
-            this.remove()
-            otherObject.health -= 20
-            return true
-        }
-        return false
+        // if (otherObject instanceof Ship) {
+        //     this.remove()
+        //     otherObject.health -= 20
+        //     return true
+        // }
+        // return false
     }
     update() {
 

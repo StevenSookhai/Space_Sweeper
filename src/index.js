@@ -1,4 +1,8 @@
-console.log("Webpack is working!")
+// CREDITS/SOURCES:
+//ALL ASSETS/IMAGES WHERE OBTAINED FROM CRAFTPIX.COME
+//ALL MUSIC WERE OPTAINED FROM MIKIT.CO
+
+// console.log("Webpack is working!")
 import MovingObject from "./scripts/moving_object";
 import Enemy from "./scripts/enemy";
 import Game from "./scripts/game";

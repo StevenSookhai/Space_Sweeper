@@ -62,7 +62,7 @@ class Boss extends MovingObject{
                 } else {
                     // console.log(this.health)
                     // console.log("en bull collid 1st")
-                    console.log("in boss else")
+                    // console.log("in boss else")
                     this.game.score += 1
                     // console.log(this.game.score)
                     this.remove()
@@ -116,7 +116,7 @@ class Boss extends MovingObject{
     }
 
     ultimate(){
-        console.log("In ultimate")
+        // console.log("In ultimate")
         // this.game.ctx.beginPath();
         // this.game.ctx.rect(600, -800 , 100, 100)
         // this.game.ctx.fill();

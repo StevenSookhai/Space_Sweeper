@@ -37,14 +37,17 @@ h1{
     color: gold;
     border:black s;
     font-size: 30px;
-    position: absolute;
-    margin-left: 650px;
+    margin-left: auto;
+    // margin: auto;
+    margin-right: auto;
+    // position: relative;
+    margin-left: 630px;
     // text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
 }
 .instructions-modal{
     font-family: "rubber";
     display: none;
-    position: relative;
+    position: fixed;
     margin-left: auto;
     margin-right: auto;
     font-size: 35px;

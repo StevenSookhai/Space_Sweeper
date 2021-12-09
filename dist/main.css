@@ -91,14 +91,15 @@ h1 {
   color: gold;
   border: black s;
   font-size: 30px;
-  position: absolute;
-  margin-left: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 630px;
 }
 
 .instructions-modal {
   font-family: "rubber";
   display: none;
-  position: relative;
+  position: fixed;
   margin-left: auto;
   margin-right: auto;
   font-size: 35px;

@@ -12,7 +12,7 @@ class EnemyBullet extends MovingObject{
     }
 
     draw(ctx) {
-        console.log("drawing")
+        // console.log("drawing")
         ctx.drawImage(this.SpriteImage, this.pos[0] - 1, this.pos[1] - 4, 30, 5)
     }
     collideWith(otherObject) {
