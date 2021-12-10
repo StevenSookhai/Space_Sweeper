@@ -1,6 +1,7 @@
 # SpaceSweeper
 # Background
-What happens when you happen to get on the bad side of the Space Mafia? Well….you either try to survive or be eliminated! Space Sweeper is a space themed game where you are flying in space fighting your way through against enemies sent to eliminate you.
+[Space Sweeper!](https://stevensookhai.github.io/Space_Sweeper/) is a space themed game where you are flying in space fighting your way through against enemies sent to eliminate you.
+![gamplay](/Users/stevensookhai/Desktop/ezgif.com-gif-maker (1).gif)
 # Functionality & MVPs
 In Space Sweeper, users will be able to:
 - fly a spaceship through space using using the wasd keys
@@ -17,6 +18,27 @@ In addition, this project will include:
 # Wireframes
 <img width="1029" alt="Screen Shot 2021-12-02 at 10 43 18 PM" src="https://user-images.githubusercontent.com/90236328/144544145-47abe7d9-41af-4b93-bd3a-0305d56b1175.png">
 
+## Code
+```javascript
+handleBackground(ctx){
+    let background = new Image();
+    background.src = this.level.background_src
+        ctx.drawImage(background, this.x, 0, Game.WIDTH, Game.HEIGHT)
+        ctx.drawImage(background, this.x2, 0, Game.WIDTH, Game.HEIGHT)
+
+        if(this.x < -1080 ){
+            this.x = 1080 + this.x2 - this.gameSpeed
+        }else{
+            this.x -= this.gameSpeed
+        }
+        if (this.x2 < -1080) {
+            this.x2 = 1080 + this.x - this.gameSpeed
+        } else {
+            this.x2 -= this.gameSpeed
+        }
+    }
+```
+One of the core features of the game is to simulate the feel as you are flying through space. This code allows us to help create that simulation by drawing two images, one on and off the canvas. The code checks whether either of the images are off the screen and then redraws in behind the one currently being displayed on the canvas. 
 
 # Technologies, Libraries, APIs
 This project will be implemented with the following technologies:
