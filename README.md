@@ -1,7 +1,7 @@
 # SpaceSweeper
 # Background
 [Space Sweeper!](https://stevensookhai.github.io/Space_Sweeper/) is a space themed game where you are flying in space fighting your way through against enemies sent to eliminate you.
-![gamplay](/Users/stevensookhai/Desktop/ezgif.com-gif-maker (1).gif)
+
 # Functionality & MVPs
 In Space Sweeper, users will be able to:
 - fly a spaceship through space using using the wasd keys
