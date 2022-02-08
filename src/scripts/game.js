@@ -290,6 +290,8 @@ class Game {
             ctx.fillText(`Score: ${this.score}`, 50, 25);
             ctx.fillText(`Coins: ${this.currency}`, 50, 50);
             ctx.fillText(`Health: ${this.ships[0].health }`, Game.WIDTH - 75, 25);
+            // console.log(this.level)
+            ctx.fillText(`Level: ${this.level.level}`, Game.WIDTH - 75, 50);
         }
 
         

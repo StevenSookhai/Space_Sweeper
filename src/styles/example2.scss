@@ -46,8 +46,8 @@ h1{
 }
 .instructions-modal{
     font-family: "rubber";
-    display: none;
-    position: fixed;
+    // display: none;
+    // position: fixed;
     margin-left: auto;
     margin-right: auto;
     font-size: 35px;
@@ -73,31 +73,60 @@ h1{
 #start p {
   font-size: 50px;
 }
-#start{
+.class{
+  position: relative;
+  // border: 4px solid red;
+}
+.canvas-start{
+  position: relative;
+  // border: 4px solid red;
+
+}
+.start{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
     font-family: "rubber";
     background-image: url("Map_3.jpg");
-    text-align: center;
+    // text-align: center;
     position: absolute;
     color: rgb(255, 255, 255);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
-    font-size: 20px;
-    margin-top: 30px;
+    // margin-left: auto;
+    // margin-right: auto;
+    // margin-top: 0px;
+    // font-size: 20px;
+    // margin-top: 30px;
+    // left: 0;
+    // right: 0;
+    // top: 0;
+    // bottom: 0;
+    // margin: auto;
+
+    // width: 1100px;
+    // height: 510px;
+    width: 100%;
+    height: 100%;
+    // border: 10px solid transparent;
+    // padding: 15px;
+    //  background-color:black;
+    // padding: 2em;
+    // text-align: left;
+    animation: animate_start 60s linear infinite ;
+}
+
+.start-text{
+    // position: absolute;
+     text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
     left: 0;
     right: 0;
-    width: 1100px;
-    height: 510px;
-    border: 10px solid transparent;
-    padding: 15px;
-    //  background-color:black;
-    padding: 2em;
-    text-align: left;
-    animation: animate_start 60s linear infinite ;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    p{
+      text-align: center;
+      font-size: 50px;
+    }
 }
 
 @keyframes animate_start {
@@ -183,9 +212,47 @@ margin-left: auto;
 
 // }
 
+// .main-page-container{
+//   display: flex;
+//   justify-content: space-evenly;
+// }
 
 
 
+.main-page-container{
+  display: flex;
+  justify-content: space-evenly;
+}
+.instructions-header{
+  font-size: 55px;
+  color: gold;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
+}
+
+.instruct-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  justify-content: center;
+  align-items: center;
+}
+
+.in-text{
+  font-size:50px;
+    font-family: "rubber";
+    text-align: center;
+    // margin: auto;
+    // width: 50%;
+    // padding: 10px;
+    // color:midnightblue;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
+  font-size: 40px;
+  text-align: center;
+  
+}
+.instructions-text{
+  margin-top: 10px;
+}
 
 
 // this is the same as: body h1 {}

@@ -12,26 +12,41 @@
 </head>
 <body>
     <!-- <div id="second-div"><span>hello there</span></div> -->
+
     <div>
         <h1 id="title"> Space Sweeper</h1>
     </div>
-    <div id="start">
-        <p class="intro">
-            You are being hunted in space, fight your way through
-            the enemies and defeated the boss in order to win!
-        </p>
-        <br>
-        <p>Press Q to start</p>
-    </div>
-    
-    <div class="instructions">
-        <h2 class="gradient-tex">Instructions</h2>
-            <div class ="instructions-modal">
-                <p>Fight your way though enemies while dodging their bullets!</p>
-                <p>Use the WASD to move and Space to shoot</p>
-                <p>Press P to pause and unpause. Press M to mute</p>
+    <div class="main-page-container">
+        
+
+        <div class="container">
+            <div class="canvas-start">
+                <div id="start" class="start">
+                    <div class="start-text">
+                        <p >
+                            You are being hunted in space, fight your way through
+                            the enemies and defeated the boss in order to win!
+                            <br>
+                            <p>Press Q to start</p>
+                        </p>
+                    </div>
+                </div>
+                <canvas id="canvas"></canvas>
             </div>
+        </div>
+        
+        <div class="instruct-container">
+            <h2 class="instructions-header">Instructions</h2>
+                <div class="instructions-text" >
+                    <p class="in-text">Fight your way though enemies while dodging their bullets!</p>
+                    <p class="in-text">Use the WASD to move and Space to shoot</p>
+                    <p class="in-text">Collect coins to automatcially upgrade your ship!</p>
+                    <p class="in-text">Press P to pause and unpause. Press M to mute</p>
+                </div>
+        </div>
     </div>
+
+
     <!-- <div id="game-over">
         <p>GAME OVER, YOU WON!</p>
     </div> -->
@@ -53,9 +68,6 @@
             <li><button type="submit" id="mute">Mute</button></li>
         </ul>
         </div> -->
-    <div id="container">
-    <canvas id="canvas"></canvas>
-    </div>
 
     
     
