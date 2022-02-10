@@ -47,7 +47,7 @@ class GameView{
             this.ctx.fill();
 
             this.ctx.font = "30px Arial";
-            this.ctx.fillStyle = "white"
+            this.ctx.fillStyle = "gold"
             this.ctx.textAlign = "center";
             this.ctx.fillText("Gameover", 1200, 900)
             this.start()

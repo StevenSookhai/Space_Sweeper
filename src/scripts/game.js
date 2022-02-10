@@ -142,7 +142,7 @@ class Game {
 
     randomPos() {
         const x = Game.WIDTH + 100
-        const y = Math.random() * (Game.HEIGHT - 150) + (Game.HEIGHT - 150)
+        const y = (Math.random() * (Game.HEIGHT - 150)) 
         return [x, y]
     }
 

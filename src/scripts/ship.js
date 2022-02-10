@@ -161,7 +161,7 @@ class Ship extends MovingObject {
         this.spriteImagesArray.push(spriteImage5)
         this.spriteImagesArray.push(spriteImage6)
         this.spriteImagesArray.push(spriteImage7)
-        console.log("here")
+        // console.log("here")
         
        }
        
@@ -235,7 +235,7 @@ class Ship extends MovingObject {
            this.spriteImagesArray.push(spriteImage8)
            this.spriteImagesArray.push(spriteImage9)
            this.spriteImagesArray.push(spriteImage10)
-           console.log(this.spriteImagesArray)
+        //    console.log(this.spriteImagesArray)
        }
  
 

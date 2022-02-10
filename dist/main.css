@@ -226,6 +226,7 @@ li {
 .main-page-container {
   display: flex;
   justify-content: space-evenly;
+  position: relative;
 }
 
 .instructions-header {
@@ -253,6 +254,32 @@ li {
 
 .instructions-text {
   margin-top: 10px;
+}
+
+.s-link {
+  color: gold;
+  font-size: 30px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.header-social {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.social-links {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+#git-icon {
+  color: white;
 }
 
 h1 {
