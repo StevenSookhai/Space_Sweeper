@@ -6,6 +6,8 @@ import Ship  from "./ship"
 import Backgroud from "./background"
 import Item from "./item"
 import Boss  from "./boss"
+import Util from "./util";
+
 // import Level from "./level"
 class Game {
     constructor(ctx) {
@@ -352,7 +354,17 @@ class Game {
             (pos[0] > Game.WIDTH) || (pos[1] > Game.HEIGHT);
         }else if(object instanceof Enemy || object instanceof EnemyBullet){
             return (pos[0] < 0) || (pos[1] < 0) || (pos[1] > Game.HEIGHT);
+        }else if(object instanceof Ship){
+            return (pos[0] < 50) || (pos[1] < 50) ||
+                (pos[0] > Game.WIDTH - 50 ) || (pos[1] > Game.HEIGHT - 50);
         }
+    }
+
+    wrap(pos){
+        return[
+            Util.wrap(pos[0], Game.WIDTH), Util.wrap(pos[1], Game.HEIGHT)
+        ]
+
     }
 
     addExplosions() {

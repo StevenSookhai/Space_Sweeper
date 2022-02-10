@@ -7,6 +7,8 @@ class MovingObject {
         this.radius = options.radius;
         this.color = options.color;
         this.game = options.game;
+        this.isWrappable = options.isWrappable
+
     }
 
     draw(ctx){
@@ -44,10 +46,13 @@ class MovingObject {
 
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
         // console.log(this.game.outOfRange(this.pos))
+        // console.log(this)
         if (this.game.outOfRange(this.pos, this)){
-            // console.log(this.pos)
-            // console.log("In moveoutofrange")
-            this.remove();
+            if (this.isWrappable) {
+                this.pos = this.game.wrap(this.pos);
+            } else {
+                this.remove();
+            }
         }
     }
 

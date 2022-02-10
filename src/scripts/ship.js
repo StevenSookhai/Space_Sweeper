@@ -11,6 +11,7 @@ class Ship extends MovingObject {
         options.radius = Ship.RADIUS
         options.vel = options.vel || [3,0];
         options.color = Ship.COLOR
+        options.isWrappable = true
         super(options)
         this.spriteImage = new Image()
         this.spriteImagesArray = []
@@ -40,7 +41,7 @@ class Ship extends MovingObject {
     }
     
     drawShip(ctx){
-        this.engineSound.play();
+        // this.engineSound.play();
     if (this.type === 1){
         if(this.i !== 6){
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70,  this.pos[1] - 55, 130, 120)
@@ -249,6 +250,11 @@ class Ship extends MovingObject {
 
     moveShip(vel){
         // console.log("uhhh")
+        if (this.game.outOfRange(this.pos,this)){
+            console.log("THE SHIP IS OUT OF RANGE")
+            this.pos = this.game.wrap(this.pos);
+            // return
+        }
         this.pos[0] += vel[0];
         this.pos[1] += vel[1];
     }
