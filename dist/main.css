@@ -243,6 +243,15 @@ li {
   align-items: center;
 }
 
+.in-text {
+  font-size: 50px;
+  font-family: "rubber";
+  text-align: center;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #c2bbbb, -1px 1px 0 #aab413, 3px 6px 0 #575656;
+  font-size: 40px;
+  text-align: center;
+}
+
 .instructions-text {
   margin-top: 10px;
 }
@@ -259,6 +268,14 @@ li {
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
+}
+
+.social-links {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
 
 #git-icon {
