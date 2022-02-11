@@ -16,25 +16,27 @@ document.addEventListener("DOMContentLoaded", () => {
     let game = new Game(ctx);
     let gameView = new GameView(game, ctx)
     let playing = false;
-
-
+    let notMuted = false;
     const mainMenumusic = new Audio("./src/sound/main_m.mp3")
-    const backgroundMusic = new Audio("./src/sound/bgmusic.mp3")
+    // mainMenumusic.play();
 
+
+    const backgroundMusic = new Audio("./src/sound/bgmusic.mp3")
     
-    document.addEventListener("click", (e) =>{
-        if (!playing){
-        mainMenumusic.play();
-        }else{
-            mainMenumusic.pause()
-        }
-    })
+    // document.addEventListener("click", (e) =>{
+    //     if (!playing){
+    //     mainMenumusic.play();
+    //     }else{
+    //         mainMenumusic.pause()
+    //     }
+    // })
 
     document.addEventListener("keydown", (e) =>{
         if(e.code ==="KeyQ"){
             playing = true
             document.getElementById("start").style.display ="none"
             game = new Game(ctx);
+            // mainMenumusic.pause()
             backgroundMusic.play();
             gameView = new GameView(game, ctx)
             gameView.start()
@@ -43,11 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
             game.togglePaused()
             // console.log("p pressed")
         }
-        else if(e.code === "keyM"){
-            if(playing){
-                backgroundMusic.pause();
-                
-            }
+        else if(e.code === "KeyM"){ 
+                if(!notMuted){
+                 backgroundMusic.pause();
+                 notMuted = true
+                }else if(notMuted){
+                    backgroundMusic.play();
+                    notMuted = false
+                }
         }
     })
 });

@@ -36,7 +36,7 @@ class GameView{
             if (e.code === "KeyP") {
                 // gameView.pause()
                 this.game.togglePaused()
-                console.log("p pressed")
+                // console.log("p pressed")
             }
         })
     }

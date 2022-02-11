@@ -125,7 +125,7 @@ class Enemy extends MovingObject{
     }
 
     dead(num){
-        console.log("In enem dead")
+        // console.log("In enem dead")
         // this.explosionArr.forEach(img => {
         //     this.game.ctx.drawImage(img, this.pos[0] - 50,this.pos[1] - 50, 100, 100)
         // })
@@ -135,7 +135,7 @@ class Enemy extends MovingObject{
             if( this.i < 6){
                 
 
-                    console.log(this.i)
+                    // console.log(this.i)
                     this.game.ctx.drawImage(this.explosionArr[this.i], this.pos[0], this.pos[1], 100, 100)
                 
             this.i++}else{

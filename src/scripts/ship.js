@@ -18,7 +18,7 @@ class Ship extends MovingObject {
         this.type = 1
         this.addSprites();
         // console.log(this.spriteImagesArray)
-        console.log(this.spriteImagesArray)
+        // console.log(this.spriteImagesArray)
         this.i = 0
         this.health = 100
         this.shootSound = new Audio("./src/sound/lasershot.wav")
@@ -201,7 +201,7 @@ class Ship extends MovingObject {
            this.spriteImagesArray.push(spriteImage8)
            this.spriteImagesArray.push(spriteImage9)
            this.spriteImagesArray.push(spriteImage10)
-           console.log(this.spriteImagesArray)
+        //    console.log(this.spriteImagesArray)
        }
        else if (this.type === 3){
            this.spriteImagesArray = []
@@ -252,7 +252,7 @@ class Ship extends MovingObject {
     moveShip(vel){
         // console.log("uhhh")
         if (this.game.outOfRange(this.pos,this)){
-            console.log("THE SHIP IS OUT OF RANGE")
+            // console.log("THE SHIP IS OUT OF RANGE")
             this.pos = this.game.wrap(this.pos);
             // return
         }

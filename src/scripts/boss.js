@@ -121,7 +121,7 @@ class Boss extends MovingObject{
         // this.game.ctx.rect(600, -800 , 100, 100)
         // this.game.ctx.fill();
         // this.game.ctx.closePath();
-        console.log(this.ultTimer)
+        // console.log(this.ultTimer)
         this.game.ctx.drawImage(this.spriteImage, this.pos[0] - 200, this.pos[1] - 150, 500, 500)
         // this.i++
     }
