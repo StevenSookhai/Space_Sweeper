@@ -55,130 +55,138 @@ table {
   border-spacing: 0;
 }
 
+body h1 {
+  color: #800064;
+}
+body p {
+  color: gold;
+}
+
 body {
-  /* h1 {
-    color: rgb(128, 0, 100)
-  }  */
-
-  /* p {
-    color: gold
-  }  */
-}
-body {
-    background-color: rgb(0, 0, 0);
-    background-image: url("Stars_small_1.png");
-    /* animation: stars 2s infinite ; */
+  background-color: black;
+  background-image: url("Stars_small_1.png");
+  animation: stars 2s infinite;
 }
 
-/* @keyframes stars {
-50%{background: opacity rgb(0, 0, 0, .5)}
-100%{background: opacity rgb(0, 0, 0, 1)}
-} */
-h1{
-    font-size:50px;
-    font-family: "rubber";
-    text-align: center;
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-    color:midnightblue;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
+@keyframes stars {
+  50% {
+    background: opacity rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    background: opacity black;
+  }
+}
+h1 {
+  font-size: 50px;
+  font-family: "rubber";
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  color: midnightblue;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #c2bbbb, -1px 1px 0 #aab413, 3px 6px 0 #575656;
 }
 
-/* .instructions{
-    color: gold;
-    border:black s;
-    font-size: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-left: 700px;
+.instructions {
+  color: gold;
+  border: black s;
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 700px;
+}
 
-} */
-/* .instructions-modal{
-    font-family: "rubber";
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 35px;
-    left: 0;
-    right: 0;
-    width: 500px;
-    border: 10px solid transparent;
-    padding: 15px;
-    padding: 2em;
-    text-align: center;
+.instructions-modal {
+  font-family: "rubber";
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+  left: 0;
+  right: 0;
+  width: 500px;
+  border: 10px solid transparent;
+  padding: 15px;
+  padding: 2em;
+  text-align: center;
+  color: white;
+}
 
-    color: rgb(255, 255, 255);
-} */
+.intro p {
+  border: 4px solid black;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  font-size: 50px;
+}
 
-/* .intro p {
-    border: 4px solid black;
-    margin-top: 6rem;
-    margin-bottom: 3rem;
-    font-size: 50px;
-} */
 #start p {
   font-size: 50px;
 }
-/* .class{
-  position: relative;
-} */
-.canvas-start{
-  position: relative;
 
+.class {
+  position: relative;
 }
-.start{
+
+.canvas-start {
+  position: relative;
+}
+
+.start {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-    font-family: "rubber";
-    background-image: url("Map_3.jpg");
-    position: absolute;
-    color: rgb(255, 255, 255);
-    width: 100%;
-    height: 100%;
-    animation: animate_start 60s linear infinite ;
+  font-family: "rubber";
+  background-image: url("Map_3.jpg");
+  position: absolute;
+  color: white;
+  width: 100%;
+  height: 100%;
+  animation: animate_start 60s linear infinite;
 }
 
-.start-text{
-    /* text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto; */
-    /* p{
-      text-align: center;
-      font-size: 50px;
-    } */
+.start-text {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #c2bbbb, -1px 1px 0 #aab413, 3px 6px 0 #575656;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.start-text p {
+  text-align: center;
+  font-size: 50px;
 }
 
 @keyframes animate_start {
-0%{background-position: 0,0;}
-100%{background-position: -1000px 0; }
+  0% {
+    background-position: 0, 0;
+  }
+  100% {
+    background-position: -1000px 0;
+  }
 }
-  
+.instructions:hover .instructions-modal {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* .instructions:hover .instructions-modal {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-} */
 #start p {
-    text-align: center;
-    color: gold
+  text-align: center;
 }
-/* #container{
+
+#container {
   margin-top: 22px;
   border: 5px solid black;
   display: grid;
-  place-items: center
-  ;
-} */
-/* li {
+  place-items: center;
+}
+
+li {
   align-items: center;
-} */
-/* #options{
+}
+
+#options {
   background-color: blue;
   display: flex;
   justify-content: center;
@@ -189,82 +197,80 @@ h1{
   margin-right: auto;
   width: 500px;
   height: 20px;
-} */
+}
 
-/* #nav-links{
-  font-size: small ;
+#nav-links {
+  font-size: small;
   border: 4px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   position: relative;
-} */
+}
 
-#title{
+#title {
   color: gold;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 4px solid black;
   font-size: 80px;
-  
-}
-#canvas{
-/* margin-right: auto;
-margin-left: auto; */
-width: 1200px;
-height: 600px;
-
 }
 
-.main-page-container{
+#canvas {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.main-page-container {
   display: flex;
   justify-content: space-evenly;
   position: relative;
 }
-.instructions-header{
+
+.instructions-header {
   font-size: 55px;
   color: gold;
-   text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #c2bbbb, -1px 1px 0 #aab413, 3px 6px 0 #575656;
 }
 
-.instruct-container{
+.instruct-container {
   display: flex;
   flex-direction: column;
-  max-width: 350px;
+  max-width: 450px;
   justify-content: center;
   align-items: center;
 }
 
-.in-text{
-  font-size:50px;
+.in-text {
+  font-size: 50px;
   font-family: "rubber";
   text-align: center;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 rgb(194, 187, 187), -1px 1px 0 rgb(170, 180, 19), 3px 6px 0 rgb(87, 86, 86);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #c2bbbb, -1px 1px 0 #aab413, 3px 6px 0 #575656;
   font-size: 40px;
   text-align: center;
-  
-}
-.instructions-text{
-  margin-top: 10px;
-  color: gold;
 }
 
-.s-link{
+.instructions-text {
+  margin-top: 10px;
+}
+
+.s-link {
   color: gold;
   font-size: 30px;
   text-decoration: none;
   margin-right: 10px;
 }
-.header-social{
-   /* border: 5px solid red; */
+
+.header-social {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
 }
-.social-links{
+
+.social-links {
   position: fixed;
   left: 50%;
   bottom: 20px;
@@ -272,6 +278,10 @@ height: 600px;
   margin: 0 auto;
 }
 
-#git-icon{
+#git-icon {
   color: white;
+}
+
+h1 {
+  color: #3366ff;
 }
