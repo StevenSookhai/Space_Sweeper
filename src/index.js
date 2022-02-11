@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("start").style.display ="none"
             game = new Game(ctx);
             // mainMenumusic.pause()
+            backgroundMusic.currentTime = 0;
             backgroundMusic.play();
             gameView = new GameView(game, ctx)
             gameView.start()

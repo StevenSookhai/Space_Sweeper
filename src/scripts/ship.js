@@ -42,7 +42,7 @@ class Ship extends MovingObject {
     }
     
     drawShip(ctx){
-        // this.engineSound.play();
+        this.engineSound.play();
     if (this.type === 1){
         if(this.i !== 6){
             ctx.drawImage(this.spriteImagesArray[this.i], this.pos[0] - 70,  this.pos[1] - 55, 130, 120)
