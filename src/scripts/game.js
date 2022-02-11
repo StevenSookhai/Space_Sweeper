@@ -332,7 +332,7 @@ class Game {
                     // if ((obj1 instanceof Bullet && obj2 instanceof Enemy) || (obj1 instanceof Enemy && obj2 instanceof Bullet)){
                     //     let shotImage = new Image();
                     //     shotImage.src = "./src/images/hit.png"
-                    //     this.ctx.drawImage(shotImage, obj1.pos[0] - 30, obj1.pos[1] - 30, 100, 100)
+                    //     this.ctx.drawImage(shotImage,obj1.pos[0] - 30, obj1.pos[1] - 30, 100, 100)
                     // }
                     const collision = obj1.collideWith(obj2);
                     if (collision) return;
