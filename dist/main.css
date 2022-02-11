@@ -152,10 +152,6 @@ h1 {
   bottom: 0;
   margin: auto;
 }
-.start-text p {
-  text-align: center;
-  font-size: 50px;
-}
 
 @keyframes animate_start {
   0% {
