@@ -224,8 +224,6 @@ li {
 }
 
 .main-page-container {
-  display: flex;
-  justify-content: space-evenly;
   position: relative;
 }
 
