@@ -69,7 +69,7 @@ class Boss extends MovingObject{
                     otherObject.remove()
                     setTimeout(() => {
                         this.game.gameOver = true
-                    }, 0);
+                    }, 1000);
                     
                     return true
                 }
@@ -111,8 +111,8 @@ class Boss extends MovingObject{
         });
 
         // console.log(bullet)
-        this.game.addEnemyBullet(bullet);
-        this.game.addEnemyBullet(bullet2)
+        this.game.addBossBullet(bullet);
+        this.game.addBossBullet(bullet2)
     }
 
     ultimate(){

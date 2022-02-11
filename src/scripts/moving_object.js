@@ -14,18 +14,18 @@ class MovingObject {
     draw(ctx){
         // console.log(ctx)
         // console.log(this)
-        ctx.fillStyle = this.color;
-        // ctx.beginPath();
-        // ctx.rect(this.pos[0], this.pos[1] , 50, 50)
-        // ctx.fill();
-        // ctx.closePath();
+        // ctx.fillStyle = this.color;
+        // // ctx.beginPath();
+        // // ctx.rect(this.pos[0], this.pos[1] , 50, 50)
+        // // ctx.fill();
+        // // ctx.closePath();
 
-        ctx.beginPath();
-        ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.fillStyle = this.color;
-        ctx.fill();
+        // ctx.beginPath();
+        // ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
+        // ctx.closePath();
+        // ctx.stroke();
+        // ctx.fillStyle = this.color;
+        // ctx.fill();
 
     }
 

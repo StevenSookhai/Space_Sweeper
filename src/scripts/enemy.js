@@ -14,7 +14,7 @@ class Enemy extends MovingObject{
         options.pos = options.pos || options.game.randomPos();
         options.vel = [-3,0]
         super(options)
-        this.health = 100
+        this.health = 200
         this.spriteImage = new Image ()
         this.spriteImage.src = this.game.level.enemy_type
         this.explosionArr = []

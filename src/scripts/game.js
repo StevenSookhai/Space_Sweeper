@@ -7,22 +7,21 @@ import Backgroud from "./background"
 import Item from "./item"
 import Boss  from "./boss"
 import Util from "./util";
+import BossMissiles from "./boss_missiles"
 
-// import Level from "./level"
+
 class Game {
     constructor(ctx) {
     this.ctx = ctx
-    // console.log("IN GAME CONSTRUCTOR")
     this.enemies = []
     this.items = []
     this.ships = []
-    this.bullets = [] 
+    this.bullets = []
+    this.bossMissles = [] 
     this.enemyBullets = []
     this.currentEnemies = [] //only spawn the current enemies 
     this.level = Level.level1
-    console.log(this.level)
     this.score = 0
-    // this.addEnemies();
     this.enemiesTimer = this.spawnEnemies();
     this.spawnItemsTimer = this.spawnItems();
     this.enemiesShootTimer = this.enemyShoots();
@@ -50,7 +49,6 @@ class Game {
         if (this.isPaused){
             this.isPaused = false
             this.spawnItemsTimer = this.spawnItems()
-            // this.enemiesTimer 
             this.enemyShootsTimer = this.enemyShoots();
             this.enemiesTimer = this.spawnEnemies();
         }else{
@@ -65,7 +63,6 @@ class Game {
         if (this.gameOver) {
             this.gameOver = false
             this.spawnItemsTimer = this.spawnItems()
-            // this.enemiesTimer 
             this.enemyShootsTimer = this.enemyShoots();
             this.enemiesTimer = this.spawnEnemies();
         } else {
@@ -79,10 +76,7 @@ class Game {
         const timerID = setInterval(() => {
             const enemy = new Enemy({ game: this})
             this.enemies.push(enemy)
-            // this.enemyShoots()
         }, 1000);
-    //    this.enemyShoots();
-
         return timerID
     }
     
@@ -102,7 +96,6 @@ class Game {
             const item = new Item({ game: this })
             this.items.push(item)
         }, 3000);
-        //    this.enemyShoots();
         return timerID
     }
 
@@ -126,11 +119,8 @@ class Game {
 
     }
     addShip(){
-        // console.log("In game addShip")
         const ship = new Ship({game: this})
-        // console.log(ship)
         ship.draw(this.ctx)//REMEMBER TO COMMENT THIS BACK IN
-        // console.log(ship)
         this.ships.push(ship)
         return ship
     }
@@ -141,10 +131,13 @@ class Game {
     addEnemyBullet(bullet){
         this.enemyBullets.push(bullet)
     }
+    addBossBullet(bullet){
+        this.bossMissles.push(bullet)
+    }
 
     randomPos() {
         const x = Game.WIDTH + 100
-        const y = (Math.random() * (Game.HEIGHT - 150)) 
+        const y = (Math.random() * (Game.HEIGHT + 100) + 50 ) 
         return [x, y]
     }
 
@@ -183,7 +176,6 @@ class Game {
         num / 2
         i = num % this.explosionArr.length
         if (i < 6) {
-            // console.log(this.i)
             this.ctx.drawImage(this.explosionArr[i], pos[0], pos[1], 100, 100)
 
             i++
@@ -207,39 +199,7 @@ class Game {
         // }
 
        
-        if(this.isPaused){
-            ctx.rect(0,0, Game.WIDTH, Game.HEIGHT)
-            ctx.fillStyle = "rgba(0,0,0,0.5)"
-            ctx.fill();
-
-            ctx.font = "30px sans-serif";
-            ctx.fillStyle = "white"
-            ctx.textAlign = "center";
-            ctx.fillText("Paused", Game.WIDTH/2, Game.HEIGHT/2)
-        }
-        if (this.gameOver && this.ships[0].health === 0) {
-            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
-            ctx.fillStyle = "rgba(0,0,0,1)"
-            ctx.fill();
-
-            ctx.font = "30px sans-serif";
-            ctx.fillStyle = "white"
-            ctx.textAlign = "center";
-            ctx.fillText("Game Over, You Lose!", Game.WIDTH / 2, Game.HEIGHT / 2)
-            // cancelAnimationFrame(animateID % 16)
-        }
-
-        if (this.gameOver && this.ships[0].health !== 0) {
-            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
-            ctx.fillStyle = "rgba(0,0,0,1)"
-            ctx.fill();
-
-            ctx.font = "30px sans-serif";
-            ctx.fillStyle = "white"
-            ctx.textAlign = "center";
-            ctx.fillText("Game Over, You Won!", Game.WIDTH / 2, Game.HEIGHT / 2)
-            // cancelAnimationFrame(animateID % 16)
-        }
+        
        
         this.enemies.forEach(enemy =>{
             // console.log(this.enemyDead)
@@ -272,6 +232,9 @@ class Game {
         this.bullets.forEach(bullet => {
             bullet.drawBullet(this.ctx)
         })
+        this.bossMissles.forEach(bullet => {
+            bullet.draw(this.ctx)
+        })
 
         this.enemyBullets.forEach(bullet => {
             // if(this.currentFrames % 30 ===0){
@@ -295,7 +258,39 @@ class Game {
             // console.log(this.level)
             ctx.fillText(`Level: ${this.level.level}`, Game.WIDTH - 75, 50);
         }
+        if (this.isPaused) {
+            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
+            ctx.fillStyle = "rgba(0,0,0,0.5)"
+            ctx.fill();
 
+            ctx.font = "30px sans-serif";
+            ctx.fillStyle = "gold"
+            ctx.textAlign = "center";
+            ctx.fillText("Paused", Game.WIDTH / 2, Game.HEIGHT / 2)
+        }
+        if (this.gameOver && this.ships[0].health === 0) {
+            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
+            ctx.fillStyle = "rgba(0,0,0,1)"
+            ctx.fill();
+
+            ctx.font = "30px sans-serif";
+            ctx.fillStyle = "gold"
+            ctx.textAlign = "center";
+            ctx.fillText("Game Over, You Lose!, Press Q to Restart", Game.WIDTH / 2, Game.HEIGHT / 2)
+            // cancelAnimationFrame(animateID % 16)
+        }
+
+        if (this.gameOver && this.ships[0].health !== 0) {
+            ctx.rect(0, 0, Game.WIDTH, Game.HEIGHT)
+            ctx.fillStyle = "rgba(0,0,0,1)"
+            ctx.fill();
+
+            ctx.font = "30px sans-serif";
+            ctx.fillStyle = "gold"
+            ctx.textAlign = "center";
+            ctx.fillText("Game Over, You Won!, Press Q to Play Again!", Game.WIDTH / 2, Game.HEIGHT / 2)
+            // cancelAnimationFrame(animateID % 16)
+        }
         
         
     }
@@ -313,6 +308,9 @@ class Game {
         this.enemyBullets.forEach(bullet => {
             bullet.move(time)
         })
+        this.bossMissles.forEach(bullet => {
+            bullet.move(time)
+        })
         
         this.bossArr.forEach(boss => {
           if(this.bossArr[0].pos[0] > 1000){
@@ -321,7 +319,7 @@ class Game {
         })
     }
     getAllObjects(){ // grab all current objects 
-        return [].concat(this.enemies, this.ships, this.bullets, this.items, this.bossArr, this.enemyBullets)
+        return [].concat(this.enemies, this.ships, this.bullets, this.items, this.bossArr, this.enemyBullets, this.bossMissles)
     }
     checkCollisions(){
        const allObjects = this.getAllObjects();
@@ -359,14 +357,11 @@ class Game {
                 (pos[0] > Game.WIDTH - 50 ) || (pos[1] > Game.HEIGHT - 50);
         }
     }
-
     wrap(pos){
         return[
             Util.wrap(pos[0], Game.WIDTH), Util.wrap(pos[1], Game.HEIGHT)
         ]
-
     }
-
     addExplosions() {
         const explosion1 = new Image()
         const explosion2 = new Image()
@@ -408,6 +403,11 @@ class Game {
         else if (object instanceof EnemyBullet) {
             setTimeout(() => {
                 this.enemyBullets.splice(this.enemyBullets.indexOf(object), 1)
+            }, 0)
+        }
+        else if (object instanceof BossMissiles) {
+            setTimeout(() => {
+                this.bossMissles.splice(this.bossMissles.indexOf(object), 1)
             }, 0)
         }
         else if (object instanceof Item) {

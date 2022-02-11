@@ -23,16 +23,16 @@ class BossMissiles extends MovingObject {
         }
     }
     collideWith(otherObject) {
-        // if (otherObject instanceof Ship) {
-        //     this.remove()
-        //     otherObject.health -= 20
-        //     return true
-        // }
-        // return false
+        if (otherObject instanceof Ship) {
+            this.remove()
+            otherObject.health -= 30
+            return true
+        }
+        return false
     }
-    update() {
+    // update() {
 
-    }
+    // }
 
     addMissile() {
         let spriteImage1 = new Image()

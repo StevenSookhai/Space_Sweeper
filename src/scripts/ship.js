@@ -32,6 +32,7 @@ class Ship extends MovingObject {
     collideWith(otherObject){
         if(otherObject instanceof Item){
             this.game.currency += 5
+            this.health += 10
             // console.log(this.game.currency)
             this.collectSound.play()
             otherObject.remove()
@@ -103,7 +104,7 @@ class Ship extends MovingObject {
         }
 
         if (this.type === 3) {
-            dmg = 80
+            dmg = 100
             pos = [this.pos[0] + 87, this.pos[1] - 63]
             pos2 = [this.pos[0] + 83, this.pos[1] + 62]
         }
