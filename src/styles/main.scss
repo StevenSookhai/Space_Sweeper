@@ -1,3 +1,4 @@
+
 body {
   h1 {
     color: rgb(128, 0, 100)
@@ -37,28 +38,7 @@ h1{
     margin-left: 700px;
 
 }
-.instructions-modal{
-    font-family: "rubber";
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 35px;
-    left: 0;
-    right: 0;
-    width: 500px;
-    border: 10px solid transparent;
-    padding: 15px;
-    padding: 2em;
-    text-align: center;
 
-    color: rgb(255, 255, 255);
-}
-
-.intro p {
-    border: 4px solid black;
-    margin-top: 6rem;
-    margin-bottom: 3rem;
-    font-size: 50px;
-}
 #start p {
   font-size: 50px;
 }
@@ -102,19 +82,9 @@ h1{
 }
   
 
-.instructions:hover .instructions-modal {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
 #start p {
     text-align: center;
 }
-
-li {
-  align-items: center;
-}
-
 
 #title{
   color: gold;
@@ -124,11 +94,6 @@ li {
   border: 4px solid black;
   font-size: 80px;
   
-}
-#canvas{
-// margin-right: auto;
-// margin-left: auto;
-
 }
 
 .main-page-container{
